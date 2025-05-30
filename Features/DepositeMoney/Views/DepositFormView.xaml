@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    x:DataType="app:DepositMoneyPageViewModel"
+    x:Class="Transact.DepositFormView">
+    <StackLayout
+        VerticalOptions="{x:OnPlatform 
+            Android=FillAndExpand}"
+        WidthRequest="{x:Static app:Dimens.FormWidth}"
+        Margin="{app:EdgeInsets 
+            Horizontal={x:Static app:Dimens.Spacing24}, 
+            Vertical={x:Static app:Dimens.Spacing38}}"
+        Spacing="{x:Static app:Dimens.Spacing32}">
+        <app:InputControl
+            Label="Deposit Amount (₦)"
+            Placeholder="₦0000000000"
+            Keyboard="Numeric"
+            Errors="{Binding Form.DepositAmountErrors}"
+            IsValid="{Binding Form.DepositAmountErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
+            Text="{Binding Form.DepositAmount}" />
+        <VerticalStackLayout
+            VerticalOptions="{x:OnPlatform 
+                Android=StartAndExpand}">
+            <Label
+                Style="{x:Static app:Styles.InputLabel}"
+                Margin="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing16}}"
+                Text="Deposit type" />
+            <app:RadioControl
+                RadioOptions="{Binding DepositTypeOptions}"
+                SelectionValue="{Binding Form.DepositType}" />
+        </VerticalStackLayout>
+        <Button
+            Style="{x:Static app:Styles.TextButton}"
+            Background="{x:Static app:AppColors.DeepBlue}"
+            Command="{Binding DepositCommand}"
+            Text="Deposit" />
+    </StackLayout>
+</ContentView>

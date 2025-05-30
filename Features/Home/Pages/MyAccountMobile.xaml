@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    x:DataType="app:MyAccountViewModel"
+    x:Class="Transact.MyAccountMobile"
+    BackgroundColor="{x:Static app:AppColors.bgmyaccount}">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior
+            IsVisible="False" />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Content>
+        <VerticalStackLayout>
+            <app:HeaderNavigateView
+                BackCommand="{Binding BackCommand}"
+                IsBack="True"
+                TitlePage="My Account" />
+                
+            <VerticalStackLayout>
+                <Border
+                    StrokeThickness="0"
+                    BackgroundColor="{x:Static app:AppColors.Gradient}"
+                    HorizontalOptions="FillAndExpand"
+                    HeightRequest="167"
+                    StrokeShape="RoundRectangle 0,0,120,120">
+                    <VerticalStackLayout>
+                        <Label
+                            Text="Available Balance"
+                            Style="{x:Static app:Styles.Labelwhite}"
+                            FontSize="{x:Static app:Dimens.Spacing16}"
+                            HorizontalOptions="Center"
+                            Margin="{app:EdgeInsets Top={x:Static app:Dimens.Spacing23}}" />
+                        <Label
+                            Text="₦ 28,085.00"
+                            Style="{x:Static app:Styles.Labelwhite}"
+                            FontSize="{x:Static app:Dimens.Spacing32}"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Profile Section -->
+                <VerticalStackLayout
+                    Spacing="{x:Static app:Dimens.Spacing10}"
+                    HorizontalOptions="Center"
+                    Padding="{app:EdgeInsets Top={x:Static app:Dimens.Spacingam50} , Bottom={x:Static app:Dimens.Spacing20}}">
+                    <Border
+                        HeightRequest="{x:Static app:Dimens.Spacing100}"
+                        WidthRequest="{x:Static app:Dimens.Spacing100}"
+                        StrokeThickness="2"
+                        Stroke="{x:Static app:AppColors.LightGray}"
+                        BackgroundColor="{x:Static app:AppColors.White}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        StrokeShape="Ellipse">
+                        <Image
+                            Source="avtaccount.svg"
+                            Aspect="AspectFill" />
+                    </Border>
+                    <Label
+                        Margin="{app:EdgeInsets Top={x:Static app:Dimens.Spacing34}}"
+                        Text="Patricia Yakubu John"
+                        FontSize="{x:Static app:Dimens.Spacing16}"
+                        Style="{x:Static app:Styles.LabelGrey}"
+                        HorizontalOptions="Center" />
+                    <Label
+                        Text="8160515151"
+                        FontSize="{x:Static app:Dimens.Spacing32}"
+                        FontAttributes="Bold"
+                        Style="{x:Static app:Styles.Labelprimary}"
+                        HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <!-- Action Buttons -->
+                <VerticalStackLayout
+                    Spacing="{x:Static app:Dimens.Spacing8}"
+                    Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.Spacing24} , 
+                            Vertical={x:Static app:Dimens.Spacing53}}">
+                    <!-- Settings Button -->
+                    <Border
+                        BackgroundColor="{x:Static app:AppColors.White}"
+                        StrokeThickness="0"
+                        Padding="{app:EdgeInsets All={x:Static app:Dimens.Spacing10}}"
+                        HeightRequest="{x:Static app:Dimens.Spacing64}"
+                        HorizontalOptions="FillAndExpand"
+                        StrokeShape="RoundRectangle 8">
+                        <HorizontalStackLayout
+                            Spacing="{x:Static app:Dimens.Spacing10}">
+                            <Image
+                                Source="settings_icon.svg"
+                                Margin="{app:EdgeInsets Horizontal={x:Static app:Dimens.Spacing16}}"
+                                HeightRequest="{x:Static app:Dimens.Spacing20}"
+                                VerticalOptions="Center" />
+                            <Label
+                                Text="Settings"
+                                FontSize="{x:Static app:Dimens.Spacing16}"
+                                Style="{x:Static app:Styles.LabelGradent}"
+                                VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding GoToSettingsCommand}" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- Log Out Button -->
+                    <Border
+                        BackgroundColor="{x:Static app:AppColors.White}"
+                        StrokeThickness="0"
+                        Padding="{app:EdgeInsets All={x:Static app:Dimens.Spacing10}}"
+                        HeightRequest="{x:Static app:Dimens.Spacing64}"
+                        HorizontalOptions="FillAndExpand"
+                        StrokeShape="RoundRectangle 8">
+                        <HorizontalStackLayout
+                            Spacing="{x:Static app:Dimens.Spacing10}">
+                            <Image
+                                Source="logout_icon.png"
+                                HeightRequest="{x:Static app:Dimens.Spacing20}"
+                                Margin="{app:EdgeInsets Horizontal={x:Static app:Dimens.Spacing16}}"
+                                VerticalOptions="Center" />
+                            <Label
+                                Text="Log Out"
+                                TextColor="{x:Static app:AppColors.Gradient}"
+                                FontSize="{x:Static app:Dimens.Spacing16}"
+                                VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding LogoutCommand}" />
+                        </Border.GestureRecognizers>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- Footer -->
+                <Label
+                    Text="User since 2022"
+                    FontSize="{x:Static app:Dimens.Spacing14}"
+                    Style="{x:Static app:Styles.LabelGray}"
+                    HorizontalOptions="Center"
+                    VerticalOptions="EndAndExpand"
+                    Padding="{x:Static app:Dimens.Spacing40}" />
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Transact.BalanceView"
+             xmlns:app="clr-namespace:Transact">
+    <VerticalStackLayout>
+        <HorizontalStackLayout 
+            Spacing="{x:Static app:Dimens.Spacing5}" 
+            HorizontalOptions="End">
+            <Image x:Name="EyeIcon" 
+                   Source="eye_off.png" 
+                   HeightRequest="24" 
+                   WidthRequest="24">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="Available Balance" 
+                   TextColor="{x:Static app:AppColors.White}" 
+                   FontSize="{x:Static app:Dimens.FontSizeH5}" />
+        </HorizontalStackLayout>
+        <Label x:Name="BalanceLabel" 
+               Text="****" 
+               TextColor="{x:Static app:AppColors.White}" 
+               FontSize="{x:Static app:Dimens.FontSizeH2}" 
+               FontAttributes="Bold" HorizontalOptions="End" />
+    </VerticalStackLayout>
+</ContentView>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               xmlns:local="clr-namespace:Transact"
+               xmlns:app="clr-namespace:Transact"
+               x:Class="Transact.TransactionpinPopup">
+
+    <!-- Outer Border -->
+    <Border Style="{x:Static app:Styles.OuterBorderStyle}">
+        <Border Style="{x:Static app:Styles.InnerBorderStyle}">
+            <VerticalStackLayout Spacing="20" Padding="10">
+                <!-- Header Section -->
+                <HorizontalStackLayout HorizontalOptions="FillAndExpand">
+                    <Label
+                        Text="Change Transaction Pin"
+                        TextColor="{x:Static app:AppColors.Gradient}"
+                        Style="{x:Static app:Styles.HeaderLabelStyle}" />
+                    <Image
+                        Source="close_icon.png"
+                        Style="{x:Static app:Styles.CloseImageStyle}">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="TapGestureRecognizer_Tapped_1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </HorizontalStackLayout>
+                <!-- Logo -->
+                <Image
+                    Source="transact_popup.png"
+                    Style="{x:Static app:Styles.LogoImageStyle}" />
+                <!-- Instructions -->
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Transaction Pin"
+                           Style="{x:Static app:Styles.Labelprimary}"
+                           FontSize="{x:Static app:Dimens.FontSizeH4}"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="Enter a PIN to keep your money safe. You will need it to make your transactions."
+                           TextColor="{x:Static app:AppColors.primarytext}"
+                           Style="{x:Static app:Styles.InstructionTextStyle}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <app:InputControl
+                        Label="Transaction Pin"
+                        Placeholder="****"
+                        IsPassword="True"
+                        Padding="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing20}}"
+                        Errors="{Binding Form.TransactionPinErrors}"
+                        IsValid="{Binding Form.TransactionPinErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
+                        Text="{Binding Form.TransactionPin}"/>  
+                    <app:InputControl
+                        Label="Repeat Transaction Pin"
+                        Placeholder="****"
+                        IsPassword="True"
+                        Padding="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing20}}"
+                        Errors="{Binding Form.RepeatTransactionPinErrors}"
+                        IsValid="{Binding Form.RepeatTransactionPinErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
+                        Text="{Binding Form.RepeatTransactionPin}"/>
+                </VerticalStackLayout>
+                <Button
+                    Text="Complete"
+                    Style="{x:Static app:Styles.CompleteButtonStyle}" />
+                <Label
+                    Text="By clicking 'Complete', you agree to the Terms of Use and Privacy Policy."
+                    TextColor="{x:Static app:AppColors.primarytext}"
+                    Style="{x:Static app:Styles.TermsLabelStyle}" />
+            </VerticalStackLayout>
+        </Border>
+    </Border>
+</toolkit:Popup>

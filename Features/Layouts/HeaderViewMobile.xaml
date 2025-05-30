@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:app="clr-namespace:Transact"
+             x:DataType="app:HeaderViewMobile"
+             x:Class="Transact.HeaderViewMobile"
+             x:Name="This">
+
+
+    <Grid Padding="{x:Static app:Dimens.Padding20}" 
+          BackgroundColor="{x:Static app:AppColors.White}" 
+          HeightRequest="{x:Static app:Dimens.Height94}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- User Info -->
+        <StackLayout 
+            Orientation="Horizontal" Grid.Column="1">
+            <Image Source="user_avatar.png"
+                   HeightRequest="{x:Static app:Dimens.Height48}"
+                   WidthRequest="{x:Static app:Dimens.Height48}"
+                   Margin="{app:EdgeInsets Left={x:Static app:Dimens.Spacing5}}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding GoToMyAccountCommand, Source={x:Reference This}}"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="Welcome Patricia!"
+                   Padding="{app:EdgeInsets Left={x:Static app:Dimens.Spacing10}}"
+                   Style="{x:Static app:Styles.LabelGradent}"
+                   VerticalOptions="Center"
+                   HorizontalOptions="StartAndExpand"
+                   FontSize="{x:Static app:Dimens.FontSizeH5}"/>  
+            
+            <Image Source="notification_icon.png"
+                   HeightRequest="{x:Static app:Dimens.Height24}"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End"
+                   Margin="{app:EdgeInsets Right={x:Static app:Dimens.Spacing5}}"
+                   >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer 
+                        x:Name="notification"
+                        Command="{Binding GoToNotificationCommand ,Source={x:Reference This}}"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
+    </Grid>
+</ContentView>

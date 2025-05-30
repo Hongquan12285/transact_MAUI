@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns:app="clr-namespace:Transact"
+           xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+           xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           Size="548,548"
+           Color="Transparent"
+           CanBeDismissedByTappingOutsideOfPopup="True"
+           x:Class="Transact.TransactionStatusFailedPage">
+    <Border Background="White"
+            Padding="0"
+            Stroke="#80ededee"
+            StrokeThickness="10">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="20"></RoundRectangle> 
+        </Border.StrokeShape>
+        <VerticalStackLayout Spacing="80"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center">
+            <Grid ColumnDefinitions="*,179,*"
+              HorizontalOptions="FillAndExpand">
+                <Label Text="Transaction Status"
+                   VerticalOptions="Start" 
+                   HeightRequest="30"
+                   HorizontalOptions="Center"
+                   Grid.Column="1"
+                   FontSize="20"
+                   TextColor="DarkBlue"/>
+                <Image Source="cancel.png"
+                   HeightRequest="24"
+                   WidthRequest="24"
+                   Grid.Column="2"
+                   HorizontalOptions="End">
+                   <Image.GestureRecognizers>
+                       <TapGestureRecognizer Tapped="Close_Tapped"/>
+                   </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+            <StackLayout WidthRequest="259"
+                     HeightRequest="168"
+                     VerticalOptions="Center"
+                     HorizontalOptions="Center"
+                     Spacing="16">
+                <Image Source="statusfailed.png"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start"
+                   HeightRequest="80"
+                   WidthRequest="80"/>
+                <Label Text="Sending Money Failed. Try Again Later"
+                   FontSize="14"
+                   FontFamily="Inter"
+                   VerticalTextAlignment="Center"
+                   TextColor="#DC362E"/>
+                <Label Text="N25,00.00"
+                   HorizontalOptions="Center"
+                   VerticalOptions="End"
+                   FontSize="24"
+                   FontFamily="Inter"
+                   FontAttributes="Bold"/>
+            </StackLayout>
+            <Button Text="Done"
+                HorizontalOptions="Center"
+                WidthRequest="380"
+                HeightRequest="42"
+                Clicked="Close_Tapped">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#2754C8" Offset="0.0"/>
+                        <GradientStop Color="#110F72" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+        </VerticalStackLayout>
+    </Border>
+</mct:Popup>

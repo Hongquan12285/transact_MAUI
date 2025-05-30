@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<app:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    x:Class="Transact.TransactionDetailsPage_Android"
+    x:DataType="app:TransactionDetailsPageViewModel"
+    BackgroundColor="{x:Static app:AppColors.WhiteLight}"
+    x:Name="This">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <StackLayout>
+        <app:HeaderNavigateView
+            BackCommand="{Binding BackCommand}"
+            IsBack="True"
+            TitlePage="Transaction Detail"/>
+        <app:TransactionDetailsView_Android
+            VerticalOptions="FillAndExpand"
+            TransactionDetail="{Binding TransactionDetail}" />
+    </StackLayout>
+</app:BasePage>

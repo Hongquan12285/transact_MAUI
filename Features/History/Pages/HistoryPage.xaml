@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<app:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    BackgroundColor="{x:Static app:AppColors.WhiteLight}"
+    x:Class="Transact.HistoryPage"
+    x:DataType="app:HistoryPageViewModels"
+    x:Name="This">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <StackLayout>
+        <app:HeaderNavigateView
+            IsVisible="{x:OnPlatform 
+                Android=true,
+                WinUI=false}"
+            TitlePage="History" />
+        <app:HeaderView
+            IsVisible="{x:OnPlatform 
+                Android=false,
+                WinUI=true}" />
+        <StackLayout
+            VerticalOptions="FillAndExpand"
+            Padding="{x:OnPlatform 
+                Android={app:EdgeInsets 
+                    Horizontal={x:Static app:Dimens.Spacing24},
+                    Vertical={x:Static app:Dimens.Spacing14}},
+                WinUI={app:EdgeInsets 
+                    Left={x:Static app:Dimens.Spacing88}, 
+                    Right={x:Static app:Dimens.Spacing108}, 
+                    Vertical={x:Static app:Dimens.Spacing24}}}"
+            Spacing="{x:Static app:Dimens.Spacing24}">
+            <HorizontalStackLayout>
+                <Label
+                    IsVisible="{x:OnPlatform 
+                        Android=false,
+                        WinUI=true}"
+                    Style="{x:Static app:Styles.TitlePageLabel}"
+                    Text="History" />
+            </HorizontalStackLayout>
+            <FlexLayout
+                JustifyContent="SpaceBetween"
+                AlignItems="Center">
+                <Label
+                    Style="{x:Static app:Styles.RegularLabel}"
+                    TextColor="{x:Static app:AppColors.Grey}"
+                    FontSize="{x:OnPlatform 
+                        Android={x:Static app:Dimens.FontSizeH7}}"
+                    Text="All Transactions - All time" />
+                <HorizontalStackLayout
+                    IsVisible="{x:OnPlatform 
+                        Android=false,
+                        WinUI=true}"
+                    Spacing="{x:Static app:Dimens.Spacing16}">
+                    <HorizontalStackLayout Spacing="{x:Static app:Dimens.Spacing4}">
+                        <BoxView
+                            Style="{x:Static app:Styles.RectangleBoxView}"
+                            VerticalOptions="Center"
+                            BackgroundColor="{x:Static app:AppColors.Green}" />
+                        <Label
+                            Style="{x:Static app:Styles.NoteLabel}"
+                            VerticalOptions="Center"
+                            Text="Deposit" />
+                        <Label
+                            Style="{x:Static app:Styles.NoteLabel}"
+                            VerticalOptions="Center"
+                            Text="-" />
+                        <Label
+                            Style="{x:Static app:Styles.RegularLabel}"
+                            FontSize="{x:Static app:Dimens.FontSizeH5}"
+                            VerticalOptions="Center"
+                            Text="N671,065.00" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="{x:Static app:Dimens.Spacing4}">
+                        <BoxView
+                            Style="{x:Static app:Styles.RectangleBoxView}"
+                            VerticalOptions="Center"
+                            BackgroundColor="{x:Static app:AppColors.Blue}" />
+                        <Label
+                            Style="{x:Static app:Styles.NoteLabel}"
+                            VerticalOptions="Center"
+                            Text="Sent" />
+                        <Label
+                            Style="{x:Static app:Styles.NoteLabel}"
+                            VerticalOptions="Center"
+                            Text="-" />
+                        <Label
+                            Style="{x:Static app:Styles.RegularLabel}"
+                            FontSize="{x:Static app:Dimens.FontSizeH5}"
+                            VerticalOptions="Center"
+                            Text="N491,005.00" />
+                    </HorizontalStackLayout>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout
+                    Spacing="{x:Static app:Dimens.Spacing16}">
+                    <Button
+                        Style="{x:Static app:Styles.IconButton}"
+                        BackgroundColor="{x:Static app:AppColors.LittleBlue}"
+                        ImageSource="save.png" />
+                    <Button
+                        Style="{x:Static app:Styles.IconButton}"
+                        BackgroundColor="{x:Static app:AppColors.LittleBlue}"
+                        ImageSource="print.png" />
+                    <Button
+                        Style="{x:Static app:Styles.IconButton}"
+                        BackgroundColor="{x:Static app:AppColors.LittleBlue}"
+                        Command="{Binding FilterCommand}"
+                        ImageSource="filter.png" />
+                </HorizontalStackLayout>
+            </FlexLayout>
+            <app:ColumnChartView
+                Caption="Weekly"
+                Series="{Binding EstimateColumns}" />
+            <HorizontalStackLayout
+                IsVisible="{x:OnPlatform 
+                    Android=true,
+                    WinUI=false}"
+                Spacing="{x:Static app:Dimens.Spacing16}">
+                <HorizontalStackLayout Spacing="{x:Static app:Dimens.Spacing4}">
+                    <BoxView
+                        Style="{x:Static app:Styles.RectangleBoxView}"
+                        VerticalOptions="Center"
+                        BackgroundColor="{x:Static app:AppColors.Green}" />
+                    <Label
+                        Style="{x:Static app:Styles.NoteLabel}"
+                        VerticalOptions="Center"
+                        Text="Deposit" />
+                    <Label
+                        Style="{x:Static app:Styles.NoteLabel}"
+                        VerticalOptions="Center"
+                        Text="-" />
+                    <Label
+                        Style="{x:Static app:Styles.RegularLabel}"
+                        FontSize="{x:Static app:Dimens.FontSizeH7}"
+                        VerticalOptions="Center"
+                        Text="N671,065.00" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="{x:Static app:Dimens.Spacing4}">
+                    <BoxView
+                        Style="{x:Static app:Styles.RectangleBoxView}"
+                        VerticalOptions="Center"
+                        BackgroundColor="{x:Static app:AppColors.Blue}" />
+                    <Label
+                        Style="{x:Static app:Styles.NoteLabel}"
+                        VerticalOptions="Center"
+                        Text="Sent" />
+                    <Label
+                        Style="{x:Static app:Styles.NoteLabel}"
+                        VerticalOptions="Center"
+                        Text="-" />
+                    <Label
+                        Style="{x:Static app:Styles.RegularLabel}"
+                        FontSize="{x:Static app:Dimens.FontSizeH7}"
+                        VerticalOptions="Center"
+                        Text="N491,005.00" />
+                </HorizontalStackLayout>
+            </HorizontalStackLayout>
+            <app:EstimateListView
+                VerticalOptions="FillAndExpand"
+                Estimates="{Binding Estimates}" />
+            <app:PaginationControl
+                PageSize="{Binding PageSize}"
+                PageNumber="{Binding PageNumber}"
+                Count="{Binding Count}"
+                PageSelected="{Binding PageSelected}"
+                PageSelectCommand="{Binding PageSelectCommand}"
+                IsVisible="{x:OnPlatform 
+                    Android=false,
+                    WinUI=true}" />
+        </StackLayout>
+    </StackLayout>
+</app:BasePage>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<app:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    x:Class="Transact.LoginPage"
+    x:DataType="app:LoginPageViewModel"
+    x:Name="This">
+    <!-- Gradient Background -->
+    <app:BasePage.Background>
+        <LinearGradientBrush
+            StartPoint="0,0"
+            EndPoint="1,0">
+            <GradientStop
+                Color="#2754C8"
+                Offset="0.0" />
+            <GradientStop
+                Color="#110F72"
+                Offset="1.0" />
+        </LinearGradientBrush>
+    </app:BasePage.Background>
+
+    <!-- Main Grid -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Border in the Center -->
+        <Border
+            Style="{x:Static app:Styles.IconFrameLogin}"
+            Padding="{x:Static app:Dimens.Spacing16}">
+            <app:LoginView
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="CenterAndExpand" />
+        </Border>
+    </Grid>
+</app:BasePage>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:app="clr-namespace:Transact"
+              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+              x:Class="Transact.MyAccountPage"
+              x:DataType="app:MyAccountViewModel"
+              BackgroundColor="{x:Static app:AppColors.offbackground}"
+              x:Name="This">
+        
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior
+            IsVisible="False" />
+    </Shell.BackButtonBehavior>
+
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <app:HeaderView Grid.Row="0"
+                        Title="{Binding Title}" />
+
+        <VerticalStackLayout 
+            Grid.Row="1" 
+            Spacing="{x:Static app:Dimens.Spacing10}"  
+            Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.Spacing100},
+                                     Top={x:Static app:Dimens.Spacing20}}">
+
+            <HorizontalStackLayout Spacing="{x:Static app:Dimens.Spacing16}" 
+                                   Padding="{app:EdgeInsets Top={x:Static app:Dimens.Spacing20} , Bottom={x:Static app:Dimens.Spacing20}}">
+                <HorizontalStackLayout Spacing="{x:Static app:Dimens.Spacing16}">
+                    <Image
+                        Style="{x:Static app:Styles.BaseIcon}"
+                        Source="back.png">
+                    </Image>
+                    <Label
+                        Style="{x:Static app:Styles.TitlePageLabel}"
+                        TextColor="{x:Static app:AppColors.Grey}"
+                        Text="Home" />
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCommand}" />
+                    </HorizontalStackLayout.GestureRecognizers>
+                </HorizontalStackLayout>
+                <BoxView
+                    HeightRequest="{x:Static app:Dimens.Spacing4}"
+                    WidthRequest="{x:Static app:Dimens.Spacing4}"
+                    CornerRadius="{x:Static app:Dimens.Spacing4}"
+                    VerticalOptions="Center"
+                    BackgroundColor="{x:Static app:AppColors.Grey}" />
+                <Label
+                    Style="{x:Static app:Styles.TitlePageLabel}"
+                    Text="My Account" />
+            </HorizontalStackLayout>
+            <!-- Profile Section -->
+            <Border Background="{x:Static app:AppColors.Gradient}" 
+                    StrokeShape="RoundRectangle 32" 
+                    Padding="{app:EdgeInsets All={x:Static app:Dimens.Padding38}}" 
+                    HeightRequest="{x:Static app:Dimens.Height166}">
+                <Grid ColumnDefinitions="Auto, *" 
+                      RowDefinitions="*, Auto">
+                    <Image Source="user_avatar.png" 
+                           HeightRequest="{x:Static app:Dimens.Spacing100}" 
+                           WidthRequest="{x:Static app:Dimens.Spacing100}"/>
+                    <!-- Available Balance -->
+                    <VerticalStackLayout Grid.Column="1"
+                                         HorizontalOptions="End"
+                                         VerticalOptions="Center" 
+                                         Spacing="{x:Static app:Dimens.Spacing5}">
+                        <app:BalanceView/>
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+            
+            <Grid Grid.Column="1"  
+                  ColumnDefinitions="*, Auto"
+                  Margin="{app:EdgeInsets Vertical={x:Static app:Dimens.Spacing32}}">
+                <Label Text="Patricia Yakubu John" 
+                       FontSize="{x:Static app:Dimens.FontSizeH4}" 
+                       Style="{x:Static app:Styles.LabelGrey}" 
+                       VerticalOptions="Center" />
+                <Label Text="8160515151" 
+                       FontSize="{x:Static app:Dimens.FontSizeH2}" 
+                       Style="{x:Static app:Styles.Labelprimary}" 
+                       FontAttributes="Bold" 
+                       VerticalOptions="Center" Grid.Column="1" HorizontalOptions="End" />
+            </Grid>
+            <Grid RowDefinitions="*, *" 
+                  ColumnDefinitions="*, *"  
+                  RowSpacing="{x:Static app:Dimens.Spacing15}" 
+                  ColumnSpacing="{x:Static app:Dimens.Spacing15}">
+                <!-- Notifications -->
+                <Border Style="{StaticResource RoundedBorderStyle}" 
+                        Grid.Row="0" 
+                        Grid.Column="0">
+                    <Grid VerticalOptions="Fill" 
+                          HorizontalOptions="Fill">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="thongbao_icon.png" 
+                               Style="{x:Static app:Styles.IconMyAccount}" />
+                        <Label Text="Notifications"
+                               Style="{x:Static app:Styles.LableMyAccount}"/>
+                        <Switch IsToggled="True" 
+                                Grid.Column="2" 
+                                VerticalOptions="Center" 
+                                HorizontalOptions="End" 
+                                Margin="0,0,-115,0"  
+                                OnColor="{x:Static app:AppColors.clswitch}" 
+                                ThumbColor="{x:Static app:AppColors.White}"/>
+                    </Grid>
+                </Border>
+
+                <!-- Password -->
+                <Border Style="{StaticResource RoundedBorderStyle}" 
+                        Grid.Row="0" 
+                        Grid.Column="1">
+                    <Grid VerticalOptions="Fill" 
+                          HorizontalOptions="Fill">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="password_icon.png" 
+                               Style="{x:Static app:Styles.IconMyAccount}" />
+                        <Label Text="Password" 
+                               Style="{x:Static app:Styles.LableMyAccount}"/>
+                        <Label
+                            Text="Change"
+                            Style="{x:Static app:Styles.LabelChange}">
+                        <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowChangePasswordPopupCommand}" />
+                        </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </Border>
+
+                <!-- Transaction Pin -->
+                <Border Style="{StaticResource RoundedBorderStyle}" 
+                        Grid.Row="1" 
+                        Grid.Column="0">
+                    <Grid VerticalOptions="Fill" 
+                          HorizontalOptions="Fill">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="pin_icon.png" 
+                               Style="{x:Static app:Styles.IconMyAccount}"  />
+                        <Label Text="Transaction Pin"
+                               Style="{x:Static app:Styles.LableMyAccount}" />
+                        <Label Text="Change"
+                               Style="{x:Static app:Styles.LabelChange}">         
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ChangeTransactionPinCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                    </Grid>
+                </Border>
+
+                <!-- Log Out -->
+                <Border Style="{StaticResource RoundedBorderStyle}"
+                        Grid.Row="1" 
+                        Grid.Column="1">
+                    <Grid VerticalOptions="Fill" HorizontalOptions="Fill">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="logout_icon.png" 
+                               Style="{x:Static app:Styles.IconMyAccount}" />
+                        <Label Text="Log Out" 
+                               Style="{x:Static app:Styles.LableMyAccount}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer  Command="{Binding LogoutCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </Border>
+            </Grid>
+            <Label
+                Text="User since 2022"
+                FontSize="14"
+                TextColor="{x:Static app:AppColors.Grey}"
+                HorizontalOptions="Center" Padding="0,20,0,0"/>
+        </VerticalStackLayout>
+    </Grid>
+</app:BasePage>

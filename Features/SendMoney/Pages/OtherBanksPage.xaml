@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage xmlns:app="clr-namespace:Transact"
+              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              x:Class="Transact.OtherBanksPage"
+              BackgroundColor="{x:Static app:AppColors.offbackground}"
+              x:Name="This">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <VerticalStackLayout >
+        <app:HeaderView x:Name="HeaderView"
+                        Grid.Row="0"
+                        Title="{Binding Title}" />
+        <Label x:Name="OtherBanksLabel"
+               Text="Send Money"
+               HeightRequest="70"
+               HorizontalTextAlignment="Center"
+               Background="White"
+               VerticalTextAlignment="Center"
+               FontSize="20"/>
+        <HorizontalStackLayout x:Name="Navigation" Spacing="16" Margin="88,0,24,0">
+            <Image
+                Style="{x:Static app:Styles.BaseIcon}"
+                Source="back.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="GoBack_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="Send Money"
+                   Margin="0,32,0,32"
+                   TextColor="LightGray"/>
+            <BoxView
+                HeightRequest="4"
+                WidthRequest="4"
+                CornerRadius="4"
+                VerticalOptions="Center"
+                BackgroundColor="{x:Static app:AppColors.Grey}" />
+            <Label Text="Other Banks"
+                   FontAttributes="Bold"
+                   Margin="0,32,0,32"/>
+        </HorizontalStackLayout>
+        <Border VerticalOptions="Center"
+                HorizontalOptions="Center"
+                HeightRequest="{OnPlatform Android='750',Default='450'}"
+                WidthRequest="380"
+                StrokeThickness="0"
+                Margin="{OnPlatform Android='0,35,0,0'}">
+        <VerticalStackLayout>
+             <Label Text="Send to Other Banks"
+                    VerticalOptions="Start"
+                    FontSize="20"
+                    FontFamily="Inter"
+                    HeightRequest="30"
+                    TextColor="Black"
+                    VerticalTextAlignment="Center" />
+            
+                <StackLayout Margin="0,32,0,0" Spacing="16">
+                    <app:InputControl
+                        Label="Amount to Send (₦)"
+                        Placeholder="0000000000000"
+                        Keyboard="Numeric"/>
+                </StackLayout>
+
+                <StackLayout Margin="0,32,0,0" Spacing="16">
+                    <app:InputControl
+                         Label="Recipient Account Number"
+                         Placeholder="0000000000000"
+                         Keyboard="Numeric"/>
+                </StackLayout>
+
+                <StackLayout Margin="0,32,0,0" Spacing="16">
+                    <app:InputControl
+                         Label="Remark"
+                         Placeholder="Remark"/>
+                </StackLayout>
+
+                <Button Margin="{OnPlatform Android='0,150,0,0',Default='0,32,0,0'}"
+                    HeightRequest="42"
+                    Text="Continue"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center">
+                    <Button.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#2754C8" Offset="0.0"/>
+                            <GradientStop Color="#110F72" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+            </VerticalStackLayout>
+    </Border>
+    </VerticalStackLayout>
+</app:BasePage>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage xmlns:app="clr-namespace:Transact"
+              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              x:Class="Transact.SendMoneyPage"
+              x:DataType="app:SendMoneyPageViewModel"
+              BackgroundColor="{x:Static app:AppColors.offbackground}"
+              x:Name="This">
+    <VerticalStackLayout>
+        <app:HeaderView x:Name="HeaderView" Grid.Row="0"
+                Title="{Binding Title}" />
+
+        <Label
+            x:Name="SendMoneyLabel"
+            Text="Send Money"
+            FontSize="16"
+            FontFamily="{x:Static app:FontNames.InterMedium}"
+            VerticalOptions="Start"
+            HorizontalOptions="Start" 
+            HeightRequest="24"
+            Margin="100,32,0,32"/>
+
+        <app:HeaderNavigateView
+            x:Name="HeaderNavigateView"
+            Grid.Row="0"
+            BackCommand="{Binding BackCommand}"
+            IsBack="False"
+            TitlePage="Send Money" />
+
+        <Border VerticalOptions="Center"
+                HorizontalOptions="Center"
+                WidthRequest="380"
+                HeightRequest="{OnPlatform Android='700',Default='498'}"
+                StrokeThickness="0"
+                Margin="{OnPlatform Android='0,35,0,0'}">
+            <VerticalStackLayout>
+                <Label Text="Send to Transact User"
+                   VerticalOptions="Start"
+                   FontSize="20"
+                   HeightRequest="30"
+                   FontFamily="{x:Static app:FontNames.InterRegular}"
+                   TextColor="Black"/>
+                <StackLayout Margin="0,32,0,0" Spacing="16">
+                    <app:InputControl
+                        Label="Amount to Send (₦)"
+                        Placeholder="0000000000000"
+                        Keyboard="Numeric"/>
+                </StackLayout>
+                <StackLayout Margin="0,32,0,0" Spacing="16">
+                    <app:InputControl
+                        Label="Recipient Account Number"
+                        Placeholder="0000000000000"
+                        Keyboard="Numeric"/>
+                </StackLayout>
+                <StackLayout Margin="0,32,0,0" Spacing="16">
+                    <app:InputControl
+                        Label="Remark"
+                        Placeholder="Remark"/>
+                </StackLayout>
+
+                <Label Text="Other Banks"
+                       Margin="{OnPlatform Android='0,98,0,0', Default='0,32,0,0'}"
+                       FontSize="14"
+                       FontFamily="{x:Static app:FontNames.InterRegular}"
+                       FontAttributes="Italic"
+                       HorizontalOptions="Center"
+                       TextDecorations="Underline"
+                       TextColor="#2754C8">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OtherBanksCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Button Text="Continue"
+                        Margin="{OnPlatform Android='0,112,0,0',Default='0,32,0,0'}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="End"
+                        HeightRequest="42"
+                        TextColor="White"
+                        FontFamily="{x:Static app:FontNames.InterRegular}"
+                        FontSize="14"
+                        Clicked="ConfirmDetailsPage_Clicked">
+                    <Button.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#2754C8" Offset="0.0"/>
+                            <GradientStop Color="#110F72" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</app:BasePage>

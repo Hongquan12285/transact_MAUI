@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Transact.LoadingSendMoneyPage"
+             x:Name="This">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <StackLayout HeightRequest="0"
+                 WidthRequest="400"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center">
+        <!-- Circular container for loading effect -->
+        <Grid HorizontalOptions="Center"
+              VerticalOptions="Center">
+            <!-- Image inside the circle -->
+            <Image x:Name="LoadingImage" 
+                   Source="loading_round.png"
+                   HeightRequest="68"
+                   WidthRequest="68"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+
+            <Frame BackgroundColor="White"
+                   CornerRadius="35"
+                   HeightRequest="50"
+                   WidthRequest="50"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   IsClippedToBounds="True"
+                   Padding="0" />
+
+            <Image Source="transact_logo.png"
+                   HeightRequest="28"
+                   WidthRequest="28"
+                   Aspect="AspectFit"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+            <!--<ActivityIndicator IsRunning="True"
+                               Color="#1E90FF"
+                               WidthRequest="100"
+                               HeightRequest="100" />-->
+        </Grid>
+    </StackLayout>
+
+</ContentPage>

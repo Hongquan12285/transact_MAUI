@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    x:Class="Transact.PaginationControl"
+    x:Name="This">
+    <HorizontalStackLayout
+        HorizontalOptions="Center">
+        <Border
+            Style="{x:Static app:Styles.PagingFrame}"
+            StrokeThickness="0">
+            <Image
+                HeightRequest="{x:Static app:Dimens.Height12}"
+                WidthRequest="{x:Static app:Dimens.Width12}"
+                Source="left.png" />
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="PagePrevious" />
+            </Border.GestureRecognizers>
+        </Border>
+
+        <HorizontalStackLayout
+            BindableLayout.ItemsSource="{Binding PageArrayList, Source={x:Reference This}}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate
+                    x:DataType="app:PageModel">
+                    <Border
+                        Style="{x:Static app:Styles.PagingFrame}">
+                        <Label
+                            x:Name="Text"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            Style="{x:Static app:Styles.RegularLabel}"
+                            Text="{Binding PageText }">
+                            <Label.Triggers>
+                                <DataTrigger
+                                    TargetType="Label"
+                                    Binding="{Binding IsSelected}"
+                                    Value="True">
+                                    <Setter
+                                        Property="TextColor"
+                                        Value="{x:Static app:AppColors.Blue}" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                        <Border.Triggers>
+                            <DataTrigger
+                                TargetType="Border"
+                                Binding="{Binding IsSelected}"
+                                Value="True">
+                                <Setter
+                                    Property="Stroke"
+                                    Value="{x:Static app:AppColors.Blue}" />
+                            </DataTrigger>
+                        </Border.Triggers>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnPageTapped" />
+                        </Border.GestureRecognizers>
+                    </Border>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </HorizontalStackLayout>
+        <Border
+            Style="{x:Static app:Styles.PagingFrame}">
+            <Image
+                HeightRequest="{x:Static app:Dimens.Height12}"
+                WidthRequest="{x:Static app:Dimens.Width12}"
+                Source="right.png" />
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="PageNext" />
+            </Border.GestureRecognizers>
+        </Border>
+    </HorizontalStackLayout>
+</ContentView>

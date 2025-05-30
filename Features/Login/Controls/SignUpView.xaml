@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    x:Class="Transact.SignUpView"
+    x:Name="This">
+
+    <StackLayout
+        Spacing="20">
+        <!-- Sign Up Title -->
+        <Label
+            Text="Sign Up"
+            FontSize="{x:Static app:Dimens.FontSizeH4}"
+            HorizontalOptions="Center"
+            TextColor="{x:Static app:AppColors.Blue}" />
+
+        <!-- App Logo -->
+        <Image
+            Source="bank_logo.png"
+            HeightRequest="{x:Static app:Dimens.Spacing94}"
+            WidthRequest="{x:Static app:Dimens.Spacing88}"
+            HorizontalOptions="Center" />
+
+        <!-- Welcome Text -->
+        <StackLayout
+            Spacing="5"
+            HeightRequest="{x:Static app:Dimens.Spacing74}"
+            WidthRequest="{x:Static app:Dimens.Spacing380}">
+            <Label
+                Text="Welcome to Transact"
+                FontSize="{x:Static app:Dimens.FontSizeH4}"
+                HorizontalOptions="Center"
+                TextColor="{x:Static app:AppColors.Black}" />
+
+            <Label
+                Text="Register to easily save, receive and send money using just your phone number."
+                FontSize="{x:Static app:Dimens.FontSizeH7}"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+                TextColor="{x:Static app:AppColors.Black}"
+                LineBreakMode="WordWrap" />
+        </StackLayout>
+        <Grid
+            HeightRequest="{x:Static app:Dimens.Spacing188}"
+            WidthRequest="{x:Static app:Dimens.Spacing380}"
+            RowDefinitions="Auto,Auto"
+            Margin="{app:EdgeInsets Top={x:Static app:Dimens.Spacing32}}">
+            <!-- Phone Number Input -->
+            <StackLayout
+                Grid.Row="0">
+                <Label
+                    Text="Phone Number"
+                    FontSize="{x:Static app:Dimens.FontSizeH6}"
+                    TextColor="{x:Static app:AppColors.Black}" />
+                <Grid
+                    ColumnDefinitions="*,Auto"
+                    VerticalOptions="Center"
+                    Margin="{app:EdgeInsets Top={x:Static app:Dimens.Spacing10}}">
+                    <Image
+                        Source="phone_flag.png"
+                        WidthRequest="{x:Static app:Dimens.Spacing16}"
+                        HeightRequest="{x:Static app:Dimens.Spacing20}"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Margin="{app:EdgeInsets Left={x:Static app:Dimens.Spacing20}}" />
+                    <Entry
+                        Placeholder="     +2340000000000"
+                        FontSize="{x:Static app:Dimens.FontSizeH6}"
+                        Keyboard="Telephone"
+                        TextColor="{x:Static app:AppColors.Black}"
+                        Margin="{app:EdgeInsets Left={x:Static app:Dimens.Spacing10}}" />
+                    <ImageButton
+                        Source="clear_icon.png"
+                        WidthRequest="{x:Static app:Dimens.Spacing24}"
+                        HeightRequest="{x:Static app:Dimens.Spacing24}"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center" />
+                </Grid>
+            </StackLayout>
+
+            <!-- Full Name Input -->
+            <StackLayout
+                Grid.Row="1"
+                Margin="0,20,0,0">
+                <Label
+                    Text="Full Name"
+                    FontSize="{x:Static app:Dimens.FontSizeH6}"
+                    TextColor="{x:Static app:AppColors.Black}" />
+                <Grid
+                    ColumnDefinitions="*,Auto"
+                    VerticalOptions="Center"
+                    Margin="{app:EdgeInsets Top={x:Static app:Dimens.Spacing10}}">
+                    <Entry
+                        Placeholder="Your Full Name"
+                        FontSize="{x:Static app:Dimens.FontSizeH6}"
+                        Keyboard="Text"
+                        TextColor="{x:Static app:AppColors.Black}"
+                        Margin="{app:EdgeInsets Left={x:Static app:Dimens.Spacing10}}" />
+                    <ImageButton
+                        Source="clear_icon.png"
+                        WidthRequest="{x:Static app:Dimens.Spacing24}"
+                        HeightRequest="{x:Static app:Dimens.Spacing24}"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center" />
+                </Grid>
+
+            </StackLayout>
+
+        </Grid>
+
+        <!-- Sign Up Button -->
+        <Button
+            Text="Sign Up"
+            Style="{x:Static app:Styles.BaseButtonLogin}"
+            FontSize="{x:Static app:Dimens.FontSizeH6}"
+            Background="{x:Static app:AppColors.DeepBlue}"
+            Margin="{app:EdgeInsets Top={x:Static app:Dimens.Spacing32}}"
+            Command="{Binding SignUpOtpNavigateCommand}" />
+
+        <!-- Additional Links -->
+        <StackLayout
+            HorizontalOptions="Center">
+            <Label
+                Text="Already have an account? Login"
+                FontSize="{x:Static app:Dimens.FontSizeH7}"
+                TextColor="{x:Static app:AppColors.TextBlue}"
+                HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding LoginNavigateCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label
+                Text="Forgot Password"
+                FontSize="{x:Static app:Dimens.FontSizeH7}"
+                TextColor="{x:Static app:AppColors.TextBlue}"
+                HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding ForgotPasswordNavigateCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+
+        </StackLayout>
+
+        <!-- Terms and Privacy -->
+        <Label
+            Text="By clicking on 'Next' you've agreed to the Terms of Use and Privacy Policy."
+            FontSize="{x:Static app:Dimens.FontSizeH8}"
+            TextColor="{x:Static app:AppColors.TextNote}"
+            HorizontalOptions="Center"
+            LineBreakMode="WordWrap"
+            Margin="{app:EdgeInsets Left={x:Static app:Dimens.Spacing10}, Right={x:Static app:Dimens.Spacing10}}" />
+    </StackLayout>
+</ContentView>

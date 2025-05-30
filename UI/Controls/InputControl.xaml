@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Toolkit.TextInputLayout;assembly=Syncfusion.Maui.Toolkit"
+    xmlns:app="clr-namespace:Transact"
+    x:Class="Transact.InputControl"
+    x:Name="This">
+    <StackLayout>
+        <Label
+            IsVisible="{Binding Label, 
+                Source={x:Reference This},
+                Converter={x:Static app:AppConverters.IsStringNotNullOrWhiteSpace}}"
+            Style="{x:Static app:Styles.InputLabel}"
+            Margin="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing16}}"
+            Text="{Binding Label, Source={x:Reference This}}" />
+        <VerticalStackLayout
+            BackgroundColor="{Binding BackgroundControl, Source={Reference This}}"
+            Padding="{app:EdgeInsets Left={x:Static app:Dimens.Spacing16}}">
+            <StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <inputLayout:SfTextInputLayout
+                        x:Name="SfTextInputLayout"
+                        HorizontalOptions="FillAndExpand"
+                        ContainerType="Outlined"
+                        InputViewPadding="{app:EdgeInsets Left={x:Static app:Dimens.Spacing8}}"
+                        Margin="{app:EdgeInsets Bottom=-20}"
+                        FocusedStrokeThickness="0"
+                        OutlineCornerRadius="4"
+                        UnfocusedStrokeThickness="0"
+                        IsHintAlwaysFloated="True"
+                        ShowHelperText="False"
+                        ShowHint="False"
+                        ShowLeadingView="False"
+                        ShowTrailingView="{Binding IsClear, Source={x:Reference This}}"
+                        HasError="True"
+                        ContainerBackground="Transparent">
+                        <inputLayout:SfTextInputLayout.TrailingView>
+                            <VerticalStackLayout
+                                WidthRequest="{x:Static app:Dimens.Width32}"
+                                Padding="{app:EdgeInsets Right={x:Static app:Dimens.Spacing8}}"
+                                VerticalOptions="Center">
+                                <Image
+                                    HorizontalOptions="End"
+                                    Aspect="Center"
+                                    Source="clear_button.png">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnClearClicked" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </VerticalStackLayout>
+                        </inputLayout:SfTextInputLayout.TrailingView>
+                        <inputLayout:SfTextInputLayout.ErrorLabelStyle>
+                            <inputLayout:LabelStyle
+                                TextColor="{x:Static app:AppColors.Red}" />
+                        </inputLayout:SfTextInputLayout.ErrorLabelStyle>
+                        <Entry
+                            Style="{x:Static app:Styles.TextEntry}"
+                            Text="{Binding  Text, Source={x:Reference This}}"
+                            IsPassword="{Binding IsPassword, Source={x:Reference This}}"
+                            Placeholder="{Binding Placeholder, Source={x:Reference This}}"
+                            Keyboard="{Binding  Keyboard, Source={x:Reference This}}"
+                            TextChanged="OnEntryTextChanged"
+                            Unfocused="Entry_Focused"
+                            Focused="Entry_Focused" />
+                    </inputLayout:SfTextInputLayout>
+                </StackLayout>
+                <BoxView
+                    x:Name="EntryUnderline"
+                    BackgroundColor="Transparent"
+                    HeightRequest="1" />
+            </StackLayout>
+        </VerticalStackLayout>
+    </StackLayout>
+</ContentView>

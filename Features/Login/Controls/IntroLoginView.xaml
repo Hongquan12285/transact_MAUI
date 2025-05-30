@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    x:Class="Transact.IntroLoginView"
+    x:Name="This">
+    
+    <Grid
+        RowDefinitions="Auto, *, Auto">
+        <Grid
+            Grid.Row="0"
+            ColumnDefinitions="Auto, *, Auto"
+            Margin="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing10}}"
+            Style="{x:Static app:Styles.IntroLogin}">
+
+            <!-- Logo -->
+            <Image
+                Source="bank_logo.png"
+                Margin="{app:EdgeInsets Left={x:Static app:Dimens.Spacing80}}"
+                Grid.Column="1" />
+            <!-- Skip Button -->
+            <Button
+                Text="Skip >"
+                Style="{x:Static app:Styles.NextButton}"
+                Background="{x:Static app:AppColors.BackgroundWhite}"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                Margin="{app:EdgeInsets Right={x:Static app:Dimens.Spacing5}}"
+                Grid.Column="2"
+                Command="{Binding LoginNavigateCommand}" />
+        </Grid>
+
+        <Image
+            Source="people.png"
+            Style="{x:Static app:Styles.IntroImg}"
+            Grid.Row="1" />
+
+        <Label
+            Text="Connect effortlessly, transfer seamlessly. Your phone number is your key to a world of convenient money transactions."
+            TextColor="{x:Static app:AppColors.Black}"
+            Grid.Row="2"
+            LineBreakMode="WordWrap"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center"
+            FontSize="{x:Static app:Dimens.FontSize18}"
+            Margin="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing120}}" />
+
+        <Image
+            Source="number.png"
+            HeightRequest="{x:Static app:Dimens.Spacing12}"
+            WidthRequest="{x:Static app:Dimens.Spacing84}"
+            HorizontalOptions="Center"
+            Grid.Row="3"
+            Margin="{app:EdgeInsets Top={x:Static app:Dimens.Spacing20}}" />
+
+        <Grid
+            Grid.Row="4"
+            ColumnDefinitions="Auto, *, Auto"
+            Margin="{app:EdgeInsets Top={x:Static app:Dimens.Spacing140}}"
+            HeightRequest="{x:Static app:Dimens.Spacing44}"
+            WidthRequest="{x:Static app:Dimens.Spacing380}">
+            <!-- Next Button -->
+            <Button
+                Text="Next"
+                Style="{x:Static app:Styles.NextButton}"
+                Background="{x:Static app:AppColors.BackgroundWhite}"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                Margin="{app:EdgeInsets Right={x:Static app:Dimens.Spacing5}}"
+                Grid.Column="2" />
+        </Grid>
+    </Grid>
+</ContentView>

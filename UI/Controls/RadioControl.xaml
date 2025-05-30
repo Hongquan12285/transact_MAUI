@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    x:Class="Transact.RadioControl"
+    x:Name="This">
+    <ContentView.Resources>
+        <ControlTemplate x:Key="RadioButtonTemplate">
+            <Border
+                Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.Spacing16}}"
+                StrokeThickness="0"
+                BackgroundColor="{Binding BackgroundControl, Source={x:Reference This}}"
+                StrokeShape="RoundRectangle 8">
+                <FlexLayout
+                    HeightRequest="{x:Static app:Dimens.Height46}"
+                    JustifyContent="SpaceBetween"
+                    AlignItems="Center">
+                    <Label
+                        TextColor="{x:Static app:AppColors.Black}"
+                        Text="{TemplateBinding Content}" />
+                    <Grid>
+                        <Ellipse
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            Stroke="{x:Static app:AppColors.Grey}"
+                            StrokeThickness="2">
+                            <Ellipse.Triggers>
+                                <DataTrigger
+                                    TargetType="Ellipse"
+                                    Binding="{Binding Source={RelativeSource TemplatedParent}, Path=IsChecked}"
+                                    Value="True">
+                                    <Setter
+                                        Property="Stroke"
+                                        Value="{x:Static app:AppColors.DeepBlue}" />
+                                </DataTrigger>
+                            </Ellipse.Triggers>
+                        </Ellipse>
+                        <Ellipse
+                            WidthRequest="10"
+                            HeightRequest="10">
+                            <Ellipse.Triggers>
+                                <DataTrigger
+                                    TargetType="Ellipse"
+                                    Binding="{Binding Source={RelativeSource TemplatedParent}, Path=IsChecked}"
+                                    Value="True">
+                                    <Setter
+                                        Property="Fill"
+                                        Value="{x:Static app:AppColors.DeepBlue}" />
+                                </DataTrigger>
+                            </Ellipse.Triggers>
+                        </Ellipse>
+                    </Grid>
+                </FlexLayout>
+            </Border>
+        </ControlTemplate>
+    </ContentView.Resources>
+
+    <VerticalStackLayout
+        Spacing="{x:Static app:Dimens.Spacing8}"
+        BindableLayout.ItemsSource="{Binding RadioOptions, Source={x:Reference This}}">
+        <BindableLayout.ItemTemplate>
+            <DataTemplate x:DataType="app:RadioOption">
+                <RadioButton
+                    IsChecked="{Binding IsChecked}"
+                    Content="{Binding DisplayValue}"
+                    GroupName="{Binding GroupRadio}"
+                    Value="{Binding Value}"
+                    ControlTemplate="{StaticResource RadioButtonTemplate}"
+                    CheckedChanged="OnCheckedChanged" />
+            </DataTemplate>
+        </BindableLayout.ItemTemplate>
+    </VerticalStackLayout>
+</ContentView>

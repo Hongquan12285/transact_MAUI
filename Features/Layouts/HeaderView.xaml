@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:app="clr-namespace:Transact"
+             x:DataType="app:HeaderView"
+             x:Class="Transact.HeaderView">
+    <Grid Padding="{x:Static app:Dimens.Padding20}" 
+          BackgroundColor="{x:Static app:AppColors.White}" 
+          HeightRequest="{x:Static app:Dimens.Height88}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- User Info -->
+        <HorizontalStackLayout Grid.Column="1" 
+                               Spacing="{x:Static app:Dimens.Spacing30}" 
+                               Padding="{app:EdgeInsets Right={x:Static app:Dimens.Spacing100}}">
+            <Label Text="Patricia!"
+                   Style="{x:Static app:Styles.LabelGradent}"
+                   VerticalOptions="Center"
+                   FontSize="{x:Static app:Dimens.FontSizeH5}"/>
+            <Image Source="user_avatar.png"
+                   HeightRequest="{x:Static app:Dimens.Height32}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoToMyAccountCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="notification_icon.png"
+                   HeightRequest="{x:Static app:Dimens.Height24}"
+                   VerticalOptions="Center">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnNotificationTapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </HorizontalStackLayout>
+    </Grid>
+</ContentView>

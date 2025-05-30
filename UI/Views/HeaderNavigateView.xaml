@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:app="clr-namespace:Transact"
+             x:Class="Transact.HeaderNavigateView"
+             x:Name="This">
+    <StackLayout
+        HeightRequest="{x:Static app:Dimens.HeaderHeight}"
+        BackgroundColor="{x:Static app:AppColors.White}">
+        <FlexLayout
+            AlignItems="Center"
+            JustifyContent="SpaceBetween"
+            Margin="{app:EdgeInsets Horizontal={x:Static app:Dimens.Spacing24}}"
+            VerticalOptions="CenterAndExpand">
+            <Border 
+                HeightRequest="{x:Static app:Dimens.Height24}"
+                WidthRequest="{x:Static app:Dimens.Width24}"
+                StrokeThickness="0">
+                <Image
+                    IsVisible="{Binding IsBack, Source={x:Reference This}}"
+                    VerticalOptions="CenterAndExpand"
+                    HeightRequest="{x:Static app:Dimens.Height24}"
+                    WidthRequest="{x:Static app:Dimens.Width24}"
+                    Source="back.png">      
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCommand, Source={x:Reference This}}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Border>
+            <Label
+                Style="{x:Static app:Styles.TitlePageOtherLabel}"
+                HorizontalOptions="CenterAndExpand"
+                Text="{Binding TitlePage , Source={x:Reference This}}" 
+                TextColor="{x:Static app:AppColors.Blue}"/>
+            <BoxView   
+                BackgroundColor="Transparent"
+                HeightRequest="{x:Static app:Dimens.Height24}"
+                WidthRequest="{x:Static app:Dimens.Width24}" />
+        </FlexLayout>
+        <BoxView
+            HeightRequest="1"
+            BackgroundColor="{x:Static app:AppColors.BorderGrey}" />
+    </StackLayout>
+</ContentView>

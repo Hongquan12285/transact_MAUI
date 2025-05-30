@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<app:BasePopup
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    BackgroundColor="{x:Static app:AppColors.PopBackground}"
+    x:Class="Transact.SignUpOtpPopup"
+    x:DataType="app:SignUpOtpPageViewModel"
+    x:Name="This">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
+             Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Border in the Center -->
+        <Border
+             Style="{x:Static app:Styles.IconFrameLogin}"
+             Padding="{x:Static app:Dimens.Spacing16}">
+            <VerticalStackLayout Spacing="20" Padding="10">
+                <HorizontalStackLayout HorizontalOptions="Center" >
+                    <Label
+                        Text="Change Password"
+                        TextColor="{x:Static app:AppColors.Gradient}"
+                        Style="{x:Static app:Styles.HeaderLabelStyle}" />
+                    <Image
+                        Source="close_icon.png"
+                        Style="{x:Static app:Styles.CloseImageStyle}">          
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                 Command="{Binding BackCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </HorizontalStackLayout>
+                <!-- Logo -->
+                <Image
+                    Source="transact_popup.png"
+                    Style="{x:Static app:Styles.LogoImageStyle}" />     
+                <!-- Verification Text -->
+                <Grid
+                    WidthRequest="{x:Static app:Dimens.Width428}"
+                    HeightRequest="{x:Static app:Dimens.Height112}">    
+                    <StackLayout
+                         Spacing="5">
+                        <Label
+                            Text="Please verify your Phone Number"
+                            FontSize="{x:Static app:Dimens.FontSizeH4}"
+                            HorizontalOptions="Center"
+                            TextColor="{x:Static app:AppColors.Black}" />
+                        <Label
+                            Text="OTP has been sent to your phone number +234 810 000000. The code expires in 02:59"
+                            FontSize="{x:Static app:Dimens.FontSizeH7}"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            TextColor="{x:Static app:AppColors.Black}"
+                            LineBreakMode="WordWrap"
+                            Padding="{x:Static app:Dimens.Spacing10}" />
+                        <Label
+                            Text="Enter One Time Password (OTP)"
+                            FontSize="{x:Static app:Dimens.FontSizeH7}"
+                            HorizontalOptions="Center"
+                            TextColor="{x:Static app:AppColors.Black}" />   
+                    </StackLayout>
+                </Grid>
+
+                <!-- OTP Input -->
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="Center"
+                    Spacing="{x:Static app:Dimens.Spacing10}"
+                    Padding="{x:Static app:Dimens.Spacing20}">
+                    <Entry
+                        Keyboard="Numeric"
+                        HorizontalTextAlignment="Center"
+                        Style="{x:Static app:Styles.OtpEntry}" />
+                    <Entry
+                        Keyboard="Numeric"
+                        HorizontalTextAlignment="Center"
+                        Style="{x:Static app:Styles.OtpEntry}" />
+                    <Entry
+                        Keyboard="Numeric"
+                        HorizontalTextAlignment="Center"
+                        Style="{x:Static app:Styles.OtpEntry}" />
+                    <Entry
+                        Keyboard="Numeric"
+                        HorizontalTextAlignment="Center"
+                        Style="{x:Static app:Styles.OtpEntry}" />   
+                </StackLayout>
+
+                <Grid
+                    HeightRequest="42"
+                    WidthRequest="155"
+                    ColumnDefinitions="*, Auto">    
+                    <!-- Resend Code -->
+                    <Label
+                        Text="Resend Code"
+                        FontSize="{x:Static app:Dimens.FontSizeH6}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        TextColor="{x:Static app:AppColors.TextBlue}"
+                        Margin="{app:EdgeInsets Left={x:Static app:Dimens.Spacing20}}"
+                        Grid.Column="0" />
+                    <Image
+                        Source="replay_icon.png"
+                        HeightRequest="{x:Static app:Dimens.Height24}"
+                        WidthRequest="{x:Static app:Dimens.Width24}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Margin="{app:EdgeInsets Right={x:Static app:Dimens.Spacing10}}"
+                        Grid.Column="1" />  
+                </Grid>
+                <!-- Verify Button -->
+                <Button
+                        Text="Verify"
+                        Style="{x:Static app:Styles.BaseButtonLogin}"
+                        FontSize="{x:Static app:Dimens.FontSizeH6}"
+                        Background="{x:Static app:AppColors.DeepBlue}"
+                        Margin="{app:EdgeInsets Top={x:Static app:Dimens.Spacing40}}"
+                        Command="{Binding CreatePasswordNavigateCommand}" />        
+                <!-- Terms and Privacy -->
+                <Label
+                    Text="By clicking on 'Next' you've agreed to the Terms of Use and Privacy Policy."
+                    FontSize="{x:Static app:Dimens.Spacing10}"
+                    TextColor="{x:Static app:AppColors.TextNote}"
+                    HorizontalOptions="Center"
+                    LineBreakMode="WordWrap"
+                    Margin="{app:EdgeInsets Top={x:Static app:Dimens.Spacing50},
+                                        Right={x:Static app:Dimens.Spacing10},
+                                        Left={x:Static app:Dimens.Spacing10}}" />
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+</app:BasePopup>

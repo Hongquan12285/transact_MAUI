@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    x:DataType="app:NotificationViewModel"
+    x:Class="Transact.NotificationPageMobile"
+    BackgroundColor="{x:Static app:AppColors.bgmyaccount}">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior
+            IsVisible="False" />
+    </Shell.BackButtonBehavior>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <app:HeaderNavigateView
+            Grid.Row="0"
+            BackCommand="{Binding BackCommand}"
+            IsBack="True"
+            TitlePage="Notifications" />
+
+        <!-- Notification List -->
+        <telerik:RadCollectionView
+            x:Name="NotificationListView"
+            Grid.Row="1"
+            ItemsSource="{Binding Notifications}"
+            ItemViewStyle="{StaticResource NoBorderStyle}"
+            Margin="{app:EdgeInsets Horizontal={x:Static app:Dimens.Spacing24} , Top={x:Static app:Dimens.Spacing10}}" 
+            SelectionMode="None"
+            VerticalScrollBarVisibility="Always"
+            HorizontalOptions="FillAndExpand">
+            <telerik:RadCollectionView.ItemsLayout>
+                <telerik:CollectionViewLinearLayout
+                    Orientation="Vertical"
+                    ItemSpacing="5" />
+            </telerik:RadCollectionView.ItemsLayout>
+            <telerik:RadCollectionView.ItemTemplate>
+                <DataTemplate x:DataType="app:NotificationItem">
+                    <!-- Use Border to Add Radius -->
+                    <telerik:RadBorder
+                        Margin="{app:EdgeInsets Vertical={x:Static app:Dimens.Spacing8}}" 
+                        Padding="{app:EdgeInsets All={x:Static app:Dimens.Spacing10}}" 
+                        BackgroundColor="{x:Static app:AppColors.White}"
+                        HeightRequest="{x:Static app:Dimens.Height82}"
+                        CornerRadius="{x:Static app:Dimens.Spacing12}">
+                        <Grid
+                            ColumnSpacing="10"
+                            RowSpacing="2"
+                            VerticalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                    Width="Auto" />
+                                <ColumnDefinition
+                                    Width="*" />
+                                <ColumnDefinition
+                                    Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="Auto" />
+                                <RowDefinition
+                                    Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <!-- Status Icon -->
+                            <Image
+                                Source="{Binding StatusIcon}"
+                                HeightRequest="{x:Static app:Dimens.Spacing44}"
+                                WidthRequest="{x:Static app:Dimens.Spacing44}"
+                                VerticalOptions="Center"
+                                Grid.Column="0"
+                                Grid.RowSpan="2" />
+
+                            <!-- Notification Content -->
+                            <Label
+                                Text="{Binding Title}"
+                                FontSize="{x:Static app:Dimens.FontSizeH7}"
+                                Style="{x:Static app:Styles.Labelprimary}"
+                                VerticalOptions="Center"
+                                Grid.Column="1"
+                                Grid.Row="0" />
+                            <Label
+                                Text="{Binding Subtitle}"
+                                FontSize="{x:Static app:Dimens.FontSizeH8}"
+                                Style="{x:Static app:Styles.LabelGrey}"
+                                VerticalOptions="Center"
+                                Grid.Column="1"
+                                Grid.Row="1" />
+
+                            <!-- Amount & Action -->
+                            <Label
+                                Text="{Binding Amount}"
+                                FontSize="{x:Static app:Dimens.FontSizeH4}"
+                                Style="{x:Static app:Styles.Labelprimary}"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                Grid.Column="2"
+                                Grid.Row="0" />
+                            <Label
+                                Text="{Binding ActionText}"
+                                FontSize="{x:Static app:Dimens.FontSizeH8}"
+                                Style="{x:Static app:Styles.LabelGradent}"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                Grid.Column="2"
+                                Grid.Row="1" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding TransactionDetailCommand, Source={x:RelativeSource AncestorType={x:Type app:NotificationViewModel}}}" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </telerik:RadBorder>
+                </DataTemplate>
+            </telerik:RadCollectionView.ItemTemplate>
+        </telerik:RadCollectionView>
+    </Grid>
+</ContentPage>
+

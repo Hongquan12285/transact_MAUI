@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Transact.TransactionPinPageAndroid"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             Size="428,253"
+             Color="Transparent"
+             VerticalOptions="End">
+    <Border Background="White"
+            Padding="0"
+            Stroke="#eeeeee"
+            StrokeThickness="0">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="20"/>
+        </Border.StrokeShape>
+        <StackLayout Spacing="27" Background="White">
+            <FlexLayout 
+                    JustifyContent="SpaceBetween"
+                    HeightRequest="40"
+                    AlignItems="Center"
+                    Margin="16,14,0,0">
+                <HorizontalStackLayout Spacing="8">
+                    <Border StrokeThickness="0"
+                            Padding="11"
+                            HeightRequest="40"
+                            WidthRequest="40"
+                            Background="White">
+                        <Image Source="subtract_logo.png" />
+                    </Border>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            Text="Transaction Pin" />
+                        <Label
+                            BackgroundColor="Transparent"
+                            FontSize="12"
+                            TextColor="Grey"
+                            Text="Input your transaction PIN to continue" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+                <Border
+                    StrokeThickness="0"
+                    WidthRequest="30"
+                    HeightRequest="30">
+                    <Image
+                        WidthRequest="10"
+                        HeightRequest="10"
+                        Source="close.png" />
+                </Border>
+            </FlexLayout>
+            <BoxView
+                HeightRequest="1"
+                BackgroundColor="#e6e6e6" />
+            <HorizontalStackLayout x:Name="PinContainer" Spacing="8" HorizontalOptions="Center">
+                <Border Stroke="#989898" StrokeThickness="1" HeightRequest="58" WidthRequest="51">
+                    <Entry x:Name="Entry1"
+                           WidthRequest="52" 
+                           HeightRequest="73"
+                           FontSize="30"
+                           HorizontalTextAlignment="Center" 
+                           VerticalTextAlignment="Center"
+                           IsPassword="True"
+                           TextChanged="OnEntry_TextChanged"
+                           />
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="8"/>
+                    </Border.StrokeShape>
+                </Border>
+                <Border Stroke="#989898" StrokeThickness="1" HeightRequest="58" WidthRequest="51">
+                    <Entry x:Name="Entry2" 
+                           WidthRequest="52" 
+                           HeightRequest="73" 
+                           FontSize="30"
+                           HorizontalTextAlignment="Center" 
+                           VerticalTextAlignment="Center"
+                           IsPassword="True"
+                           TextChanged="OnEntry_TextChanged"/>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="8"/>
+                    </Border.StrokeShape>
+                </Border>
+                <Border Stroke="#989898" StrokeThickness="1" HeightRequest="58" WidthRequest="51">
+                    <Entry x:Name="Entry3" 
+                           WidthRequest="52" 
+                           HeightRequest="73"
+                           FontSize="30"
+                           HorizontalTextAlignment="Center" 
+                           VerticalTextAlignment="Center"
+                           IsPassword="True"
+                           TextChanged="OnEntry_TextChanged"/>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="8"/>
+                    </Border.StrokeShape>
+                </Border>
+                <Border Stroke="#989898" StrokeThickness="1" HeightRequest="58" WidthRequest="51">
+                    <Entry x:Name="Entry4" 
+                           WidthRequest="52" 
+                           HeightRequest="73" 
+                           FontSize="30"
+                           HorizontalTextAlignment="Center" 
+                           VerticalTextAlignment="Center"
+                           IsPassword="True"
+                           TextChanged="OnEntry_TextChanged"/>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="8"/>
+                    </Border.StrokeShape>
+                </Border>
+            </HorizontalStackLayout>
+
+            <Label x:Name="ErrorLabel"
+                   Text="Incorrect Pin"
+                   TextColor="Red"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   IsVisible="False"/>
+            <BoxView
+                HeightRequest="1"
+                BackgroundColor="#e6e6e6" />
+        </StackLayout>
+    </Border>
+
+</mct:Popup>

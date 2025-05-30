@@ -1,0 +1,53 @@
+<Shell
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Transact"
+    xmlns:app="clr-namespace:Transact"
+    x:Class="Transact.WindowsFlyoutLayout"
+    FlyoutBehavior="Locked"
+    BackgroundColor="{x:Static app:AppColors.White}"
+    FlyoutWidth="{x:Static app:Dimens.FlyoutWidth217}">
+    <!-- Sidebar -->
+    <Shell.FlyoutHeader>
+        <Grid 
+            BackgroundColor="{x:Static app:AppColors.White}" 
+            Padding="{x:Static app:Dimens.Padding10}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="{x:Static app:Dimens.Height10}" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackLayout Orientation="Horizontal" 
+                         Grid.Row="0" 
+                         HorizontalOptions="Center" 
+                         VerticalOptions="Center" 
+                         Spacing="{x:Static app:Dimens.Spacing10}" 
+                         HeightRequest="{x:Static app:Dimens.Height80}">
+                <Image Source="transact_logo.png" HeightRequest="40" />
+                <Label Text="Transact"
+                       FontSize="{x:Static app:Dimens.FontSizeH4}"
+                       FontAttributes="Bold"
+                       Style="{x:Static app:Styles.LabelGradent}"
+                       VerticalOptions="Center" />
+            </StackLayout>
+            <BoxView Grid.Row="2"
+                     WidthRequest="{x:Static app:Dimens.Width217}"
+                     BackgroundColor="{x:Static app:AppColors.Inactive}" 
+                     HorizontalOptions="FillAndExpand" />
+        </Grid>
+    </Shell.FlyoutHeader>
+    <!-- Menu -->
+    <FlyoutItem Title="Home" Icon="home_icon.png" Route="Home">
+        <ShellContent ContentTemplate="{DataTemplate local:HomePage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Deposit Money" Icon="deposit.png" Route="{x:Static app:AppRoutes.DepositMoney}">
+        <ShellContent  ContentTemplate="{DataTemplate local:DepositMoneyPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Send Money" Icon="send.png" Route="SendMoney">
+        <ShellContent  ContentTemplate="{DataTemplate local:SendMoneyPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="History" Icon="history_icon.png" Route="{x:Static app:AppRoutes.History}">
+        <ShellContent ContentTemplate="{DataTemplate local:HistoryPage}" />
+    </FlyoutItem>
+</Shell>

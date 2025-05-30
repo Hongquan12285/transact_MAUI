@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+    xmlns:app="clr-namespace:Transact"
+    x:Class="Transact.DatePickerControl"
+    x:Name="This">
+    <StackLayout>
+        <Label
+            IsVisible="{Binding Label, 
+                Source={x:Reference This},
+                Converter={x:Static app:AppConverters.IsStringNotNullOrWhiteSpace}}"
+            Style="{x:Static app:Styles.InputLabel}"
+            Margin="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing16}}"
+            Text="{Binding Label, Source={x:Reference This}}" />
+        <VerticalStackLayout
+            BackgroundColor="{Binding BackgroundControl, Source={x:Reference This}}"
+            Padding="{app:EdgeInsets Left={x:Static app:Dimens.Spacing16}}">
+            <StackLayout
+                Orientation="Horizontal">
+                <telerik:RadDatePicker
+                    x:Name="DatePicker"
+                    HorizontalOptions="FillAndExpand"
+                    IsToggleButtonVisible="False"
+                    BorderThickness="0"
+                    HeightRequest="{x:Static app:Dimens.Height46}"
+                    Placeholder="{Binding Placeholder, Source={x:Reference This}}"
+                    DisplayStringFormat="{Binding DisplayStringFormat, Source={x:Reference This}}"
+                    SpinnerFormat="{Binding SpinnerFormat, Source={x:Reference This}}"
+                    PropertyChanged="ValueChanged"
+                    Focused="DatePicker_Focused"
+                    Unfocused="DatePicker_Focused"
+                    Date="{Binding Date, Source={x:Reference This}}">
+                    <telerik:RadDatePicker.DisplayLabelStyle>
+                        <Style
+                            BasedOn="{x:Static app:Styles.RegularLabel}"
+                            TargetType="Label">
+                            <Setter
+                                Property="FontSize"
+                                Value="{x:Static app:Dimens.FontSizeH5}" />
+                        </Style>
+                    </telerik:RadDatePicker.DisplayLabelStyle>
+                    <telerik:RadDatePicker.PlaceholderLabelStyle>
+                        <Style
+                            BasedOn="{x:Static app:Styles.RegularLabel}"
+                            TargetType="Label">
+                            <Setter
+                                Property="FontSize"
+                                Value="{x:Static app:Dimens.FontSizeH5}" />
+                            <Setter
+                                Property="TextColor"
+                                Value="{x:Static app:AppColors.PlaceholderGrey}" />
+                        </Style>
+                    </telerik:RadDatePicker.PlaceholderLabelStyle>
+                </telerik:RadDatePicker>
+                <VerticalStackLayout
+                    IsVisible="{Binding IsNotEmpty , Source={x:Reference This}}"
+                    WidthRequest="{x:Static app:Dimens.Width33}"
+                    Padding="{app:EdgeInsets Right={x:Static app:Dimens.Spacing16}}"
+                    Margin="{app:EdgeInsets Left={x:Static app:Dimens.Spacing8}}"
+                    VerticalOptions="Center">
+                    <Image
+                        HorizontalOptions="End"
+                        Aspect="AspectFit"
+                        Source="clear_button.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Source={x:Reference DatePicker}, Path=ClearCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </VerticalStackLayout>
+            </StackLayout>
+            <BoxView
+                BackgroundColor="Transparent"
+                HeightRequest="1">
+                <BoxView.Triggers>
+                    <DataTrigger
+                        TargetType="BoxView"
+                        Binding="{Binding IsNotEmpty , Source={x:Reference This}}"
+                        Value="True">
+                        <Setter Property="BackgroundColor" Value="{x:Static app:AppColors.BorderGrey}" />
+                    </DataTrigger>
+                    <DataTrigger
+                        TargetType="BoxView"
+                        Binding="{Binding IsNotEmpty , Source={x:Reference This}}"
+                        Value="False">
+                        <Setter Property="BackgroundColor" Value="Transparent" />
+                    </DataTrigger>
+                </BoxView.Triggers>
+            </BoxView>
+        </VerticalStackLayout>
+        <Label
+            x:Name="ErrorMessage"
+            Style="{x:Static app:Styles.ErrorLabel}"
+            Margin="{app:EdgeInsets 
+                Left={x:Static app:Dimens.Spacing8},
+                Top={x:Static app:Dimens.Spacing4}}" />
+    </StackLayout>
+</ContentView>

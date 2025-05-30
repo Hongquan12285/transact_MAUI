@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<toolkit:Popup
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    x:DataType="app:NotificationViewModel"
+    Shell.PresentationMode="Modal"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    VerticalOptions="Start"
+    HorizontalOptions="End"
+    x:Class="Transact.NotificationsPopup">
+    <Grid>
+        <Border
+            Style="{x:Static app:Styles.PopupFrame}"
+            WidthRequest="{x:Static app:Dimens.PopupWidth}"
+            Margin="{app:EdgeInsets 
+                Vertical={x:Static app:Dimens.Spacing130}, 
+                Horizontal={x:Static app:Dimens.Spacing108}}"
+            Padding="{app:EdgeInsets All={x:Static app:Dimens.Spacing24}}">
+            <StackLayout>
+                <!-- Header -->
+                <Grid
+                    BackgroundColor="{x:Static app:AppColors.White}"
+                    HeightRequest="50"
+                    Padding="{app:EdgeInsets All={x:Static app:Dimens.Padding10}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Notifications"
+                           TextColor="{x:Static app:AppColors.Gradient}"
+                           FontSize="{x:Static app:Dimens.FontSizeH4}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           Grid.Column="0" />
+
+                    <Image Grid.Column="0" 
+                           Source="close_icon.png"
+                           Style="{x:Static app:Styles.IconMyAccount}"
+                           HorizontalOptions="End">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+
+                <!-- Notification List -->
+                <ListView
+                    ItemsSource="{Binding Notifications}"
+                    HasUnevenRows="True"
+                    HeightRequest="{x:Static app:Dimens.Height720}"
+                    SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="app:NotificationItem">
+                            <ViewCell>
+                                <Border Stroke="{x:Static app:AppColors.Inactive}"
+                                        StrokeThickness="0"
+                                        Padding="{app:EdgeInsets All={x:Static app:Dimens.Padding20}}">
+                                    <Grid ColumnSpacing="5"
+                                          RowSpacing="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Status Icon -->
+                                        <Image Source="{Binding StatusIcon}"
+                                               HeightRequest="{x:Static app:Dimens.Spacing44}"
+                                               WidthRequest="{x:Static app:Dimens.Spacing44}"
+                                               Grid.Column="0" />
+
+                                        <!-- Notification Content -->
+                                        <VerticalStackLayout Grid.Column="1">
+                                            <Label Text="{Binding Title}"
+                                                   FontSize="{x:Static app:Dimens.FontSizeH7}"
+                                                   Style="{x:Static app:Styles.Labelprimary}" />
+                                            <Label Text="{Binding Subtitle}"
+                                                   FontSize="{x:Static app:Dimens.FontSizeH8}"
+                                                   Style="{x:Static app:Styles.LabelGrey}" />
+                                        </VerticalStackLayout>
+
+                                        <!-- Amount & Action -->
+                                        <VerticalStackLayout Grid.Column="2" HorizontalOptions="End">
+                                            <Label Text="{Binding Amount}"
+                                                   FontSize="{x:Static app:Dimens.FontSizeH4}"
+                                                   Style="{x:Static app:Styles.Labelprimary}"
+                                                   HorizontalOptions="End" />
+                                            <Label Text="{Binding ActionText}"
+                                                   FontSize="{x:Static app:Dimens.FontSizeH8}"
+                                                   Style="{x:Static app:Styles.LabelGradent}"
+                                                   HorizontalOptions="End" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                            Tapped="TapGestureRecognizer_Tapped"
+                                             Command="{Binding TransactionDetailCommand, Source={x:RelativeSource AncestorType={x:Type app:NotificationViewModel}}}"/>
+                                    </Border.GestureRecognizers>
+                                </Border>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Border>
+    </Grid>
+</toolkit:Popup>

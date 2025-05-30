@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:chart="clr-namespace:Syncfusion.Maui.Toolkit.Charts;assembly=Syncfusion.Maui.Toolkit"
+    xmlns:app="clr-namespace:Transact"
+    x:Class="Transact.ColumnChartView"
+    x:Name="This">
+    <Border
+        Style="{x:Static app:Styles.RectangleCornerFrame}">
+        <VerticalStackLayout
+            Padding="{app:EdgeInsets 
+                Horizontal={x:Static app:Dimens.Spacing16}, 
+                Vertical={x:Static app:Dimens.Spacing8}}"
+            BackgroundColor="{x:Static app:AppColors.White}"
+            Spacing="{x:Static app:Dimens.Spacing4}">
+            <Label
+                Style="{x:Static app:Styles.NoteLabel}"
+                FontSize="{x:Static app:Dimens.FontSizeH6}"
+                Text="{Binding Caption , Source={x:Reference This}}" />
+            <chart:SfCartesianChart HeightRequest="{x:Static app:Dimens.ChartHeight}">
+                <chart:SfCartesianChart.YAxes>
+                    <chart:NumericalAxis
+                        IsVisible="False"
+                        ShowMajorGridLines="False"
+                        EdgeLabelsVisibilityMode="AlwaysVisible"
+                        EdgeLabelsDrawingMode="Shift" />
+                </chart:SfCartesianChart.YAxes>
+                <chart:SfCartesianChart.XAxes>
+                    <chart:CategoryAxis
+                        ShowMajorGridLines="False"
+                        EdgeLabelsDrawingMode="Center">
+                        <chart:CategoryAxis.MajorTickStyle>
+                            <chart:ChartAxisTickStyle
+                                TickSize="4"
+                                Stroke="Transparent" />
+                        </chart:CategoryAxis.MajorTickStyle>
+                        <chart:CategoryAxis.LabelStyle>
+                            <chart:ChartAxisLabelStyle
+                                FontSize="{x:Static app:Dimens.FontSizeH8}"
+                                TextColor="{x:Static app:AppColors.Grey}" />
+                        </chart:CategoryAxis.LabelStyle>
+                        <chart:CategoryAxis.AxisLineStyle>
+                            <chart:ChartLineStyle Stroke="Transparent" />
+                        </chart:CategoryAxis.AxisLineStyle>
+                    </chart:CategoryAxis>
+                </chart:SfCartesianChart.XAxes>
+
+                <chart:SfCartesianChart.Series>
+                    <chart:ColumnSeries
+                        ItemsSource="{Binding Series , Source={x:Reference This}}"
+                        XBindingPath="Time"
+                        YBindingPath="Deposit"
+                        Spacing="0.1"
+                        Fill="{x:Static app:AppColors.Green}"
+                        EnableAnimation="True">
+                    </chart:ColumnSeries>
+                    <chart:ColumnSeries
+                        ItemsSource="{Binding Series , Source={x:Reference This}}"
+                        XBindingPath="Time"
+                        YBindingPath="Sent"
+                        Spacing="0.1"
+                        Fill="{x:Static app:AppColors.Blue}"
+                        EnableAnimation="True">
+                    </chart:ColumnSeries>
+                </chart:SfCartesianChart.Series>
+            </chart:SfCartesianChart>
+        </VerticalStackLayout>
+    </Border>
+</ContentView>

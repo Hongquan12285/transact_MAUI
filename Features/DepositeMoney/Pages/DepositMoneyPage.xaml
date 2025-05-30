@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<app:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    BackgroundColor="{x:Static app:AppColors.WhiteLight}"
+    x:DataType="app:DepositMoneyPageViewModel"
+    x:Class="Transact.DepositMoneyPage"
+    x:Name="This">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <StackLayout>
+        <app:HeaderNavigateView
+            IsVisible="{x:OnPlatform 
+                Android=true,
+                WinUI=false}"
+            TitlePage="Deposit Money"/>
+        <app:HeaderView 
+            IsVisible="{x:OnPlatform 
+                Android=false,
+                WinUI=true}" />    
+        <HorizontalStackLayout
+            IsVisible="{x:OnPlatform 
+                Android=false,
+                WinUI=true}"
+            Margin="{app:EdgeInsets Left={x:Static app:Dimens.Spacing88}, Top={x:Static app:Dimens.Spacing24}}">
+            <Label
+                Style="{x:Static app:Styles.TitlePageLabel}"
+                Text="Deposit Money" />
+        </HorizontalStackLayout>
+        <app:DepositFormView
+            VerticalOptions="{x:OnPlatform 
+                Android=FillAndExpand,
+                WinUI=CenterAndExpand}"
+            HorizontalOptions="CenterAndExpand" />
+    </StackLayout>
+</app:BasePage>

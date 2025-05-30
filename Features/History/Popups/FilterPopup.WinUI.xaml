@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<app:BasePopup
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    Shell.PresentationMode="Modal"
+    BackgroundColor="{x:Static app:AppColors.PopBackground}"
+    x:Class="Transact.FilterPopup_WinUI"
+    x:DataType="app:FilterPopupViewModel"
+    x:Name="This">
+    <Grid>
+        <BoxView Style="{x:Static app:Styles.OverLayBoxView}">
+            <BoxView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding BackCommand}" />
+            </BoxView.GestureRecognizers>
+        </BoxView>
+        <Border
+            VerticalOptions="CenterAndExpand"
+            Style="{x:Static app:Styles.PopupFrame}"
+            MaximumWidthRequest="{x:Static app:Dimens.PopupWidth}"
+            Padding="{app:EdgeInsets 
+                    Vertical={x:Static app:Dimens.Spacing32}, 
+                    Horizontal={x:Static app:Dimens.Spacing50}}">
+            <StackLayout>
+                <Grid
+                    HeightRequest="{x:Static app:Dimens.Height30}"
+                    Margin="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing40}}"
+                    RowDefinitions="auto"
+                    ColumnDefinitions="*,auto,*">
+                    <Label
+                        Grid.Column="1"
+                        Style="{x:Static app:Styles.CaptionFormLabel}"
+                        TextColor="{x:Static app:AppColors.Blue}"
+                        Text="Filter" />
+                    <Image
+                        Grid.Column="2"
+                        HorizontalOptions="End"
+                        WidthRequest="20"
+                        Source="close.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding BackCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+                <VerticalStackLayout
+                    Spacing="{x:Static app:Dimens.Spacing24}">
+                    <VerticalStackLayout>
+                        <Label
+                            Style="{x:Static app:Styles.FilterLabel}"
+                            Margin="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing16}}"
+                            Text="Date Range" />
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Spacing="{x:Static app:Dimens.Spacing12}">
+                            <VerticalStackLayout HorizontalOptions="FillAndExpand">
+                                <Label
+                                    Style="{x:Static app:Styles.NoteLabel}"
+                                    FontSize="{x:Static app:Dimens.FontSizeH6}"
+                                    Margin="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing8}}"
+                                    Text="From" />
+                                <app:DatePickerControl
+                                    Placeholder="MM/YY"
+                                    DisplayStringFormat="MM/yyyy"
+                                    SpinnerFormat="MMM yyyy"
+                                    Errors="{Binding Form.DateFromErrors}"
+                                    IsValid="{Binding Form.DateFromErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
+                                    Date="{Binding Form.DateFrom}" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout HorizontalOptions="FillAndExpand">
+                                <Label
+                                    Style="{x:Static app:Styles.NoteLabel}"
+                                    FontSize="{x:Static app:Dimens.FontSizeH6}"
+                                    Margin="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing8}}"
+                                    Text="To" />
+                                <app:DatePickerControl
+                                    Placeholder="MM/YY"
+                                    DisplayStringFormat="MM/yyyy"
+                                    SpinnerFormat="MMM yyyy"
+                                    Errors="{Binding Form.DateToErrors}"
+                                    IsValid="{Binding Form.DateToErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
+                                    Date="{Binding Form.DateTo}" />
+                            </VerticalStackLayout>
+                        </StackLayout>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout>
+                        <Label
+                            Style="{x:Static app:Styles.FilterLabel}"
+                            Margin="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing16}}"
+                            Text="Transaction Type" />
+                        <app:RadioControl
+                            RadioOptions="{Binding TransactionTypeOptions}"
+                            SelectionValue="{Binding Form.TransactionType}"
+                            BackgroundControl="{x:Static app:AppColors.White}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout>
+                        <Label
+                            Style="{x:Static app:Styles.FilterLabel}"
+                            Margin="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing16}}"
+                            Text="Chart View" />
+                        <app:RadioControl
+                            RadioOptions="{Binding ChartViewOptions}"
+                            SelectionValue="{Binding Form.ChartView}"
+                            BackgroundControl="{x:Static app:AppColors.White}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Button
+                    Style="{x:Static app:Styles.TextButton}"
+                    Background="{x:Static app:AppColors.DeepBlue}"
+                    Margin="{app:EdgeInsets Top={x:Static app:Dimens.Spacing24}}"
+                    Command="{Binding BackCommand}"
+                    Text="Display Filtered Results" />
+            </StackLayout>
+        </Border>
+    </Grid>
+</app:BasePopup>

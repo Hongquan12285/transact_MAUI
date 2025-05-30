@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:app="clr-namespace:Transact"
+              x:Class="Transact.TransactionStatusPage">
+    <FlexLayout JustifyContent="SpaceAround"
+                Margin="0,32,0,32"
+                Direction="Column">
+        <Grid ColumnDefinitions="*,*,*"
+              VerticalOptions="Center"
+              HorizontalOptions="FillAndExpand">
+            <Label Text="Transaction Status" 
+                   FontSize="20"
+                   FontFamily="Inter"
+                   HeightRequest="30"
+                   Grid.Column="1"
+                   HorizontalOptions="Center"/>
+            <Image Source="cancel.png"
+                   HeightRequest="24"
+                   WidthRequest="24"
+                   Grid.Column="2"
+                   HorizontalOptions="Start"/>
+        </Grid>
+        <VerticalStackLayout Spacing="16">
+            <Image Source="tick.png"
+                   HeightRequest="80"
+                   WidthRequest="80"/>
+            <Label Text="Money Sent Successful"
+                   HeightRequest="20"
+                   FontFamily="Inter"
+                   FontSize="14"
+                   HorizontalOptions="Center"/>
+            <Label Text="N25,00.00"
+                   HeightRequest="36"
+                   FontAttributes="Bold"
+                   FontFamily="Inter"
+                   FontSize="24"
+                   HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+        <StackLayout HorizontalOptions="Center">
+            <Button Text="Done"
+                HeightRequest="42"
+                WidthRequest="380"/>
+        </StackLayout>
+    </FlexLayout>
+</app:BasePage>

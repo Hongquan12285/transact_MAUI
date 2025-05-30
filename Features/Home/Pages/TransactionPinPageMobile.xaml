@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    x:DataType="app:TransactionPinViewModel"
+    x:Class="Transact.TransactionPinPageMobile"
+    BackgroundColor="{x:Static app:AppColors.bgmyaccount}"
+    Shell.TabBarIsVisible="False">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior
+            IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <VerticalStackLayout>
+        <app:HeaderNavigateView
+            BackCommand="{Binding BackCommand}"
+            IsBack="True"
+            TitlePage="Change Transaction Pin" />
+        <VerticalStackLayout
+            Spacing="{x:Static app:Dimens.Spacing20}"
+            Padding="{app:EdgeInsets All={x:Static app:Dimens.Spacing20}}"
+            VerticalOptions="Start">
+            <Image
+                Source="transact_popup.png"
+                Style="{x:Static app:Styles.LogoImageStyle}" />
+            <Label
+                Text="Transaction Pin"
+                TextColor="{x:Static app:AppColors.primarytext}"
+                FontSize="{x:Static app:Dimens.FontSizeH4}"
+                HorizontalTextAlignment="Center" />
+            <Label
+                Text="Enter a PIN to keep your money safe. You will need it to make your transactions."
+                TextColor="{x:Static app:AppColors.primarytext}"
+                Style="{x:Static app:Styles.InstructionTextStyle}" />
+
+            <VerticalStackLayout>
+                <app:InputControl
+                    Label="Transaction Pin"
+                    Placeholder="****"
+                    IsPassword="True"
+                    Padding="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing20}}"
+                    Errors="{Binding Form.TransactionPinErrors}"
+                    IsValid="{Binding Form.TransactionPinErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
+                    Text="{Binding Form.TransactionPin}"/>
+                <app:InputControl
+                    Label="Repeat Transaction Pin"
+                    Placeholder="****"
+                    IsPassword="True"
+                    Padding="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing20}}"
+                    Errors="{Binding Form.RepeatTransactionPinErrors}"
+                    IsValid="{Binding Form.RepeatTransactionPinErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
+                    Text="{Binding Form.RepeatTransactionPin}"/>
+            </VerticalStackLayout>
+            <Button
+                Text="Complete"
+                Style="{x:Static app:Styles.CompleteButtonStyle}" />
+            <Label
+                Text="By clicking 'Complete', you agree to the Terms of Use and Privacy Policy."
+                TextColor="{x:Static app:AppColors.primarytext}"
+                Style="{x:Static app:Styles.TermsLabelStyle}" />
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<app:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    x:Class="Transact.TransactionDetailsPage_WinUI"
+    x:DataType="app:TransactionDetailsPageViewModel"
+    BackgroundColor="{x:Static app:AppColors.WhiteLight}"
+    x:Name="This">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <StackLayout>
+        <app:HeaderView />
+        <StackLayout
+            VerticalOptions="FillAndExpand"
+            Padding="{app:EdgeInsets 
+                Left={x:Static app:Dimens.Spacing88}, 
+                Right={x:Static app:Dimens.Spacing108}, 
+                Vertical={x:Static app:Dimens.Spacing24}}"
+            Spacing="{x:Static app:Dimens.Height40}">
+            <HorizontalStackLayout Spacing="{x:Static app:Dimens.Spacing16}">
+                <HorizontalStackLayout Spacing="{x:Static app:Dimens.Spacing16}">
+                    <Image
+                        Style="{x:Static app:Styles.BaseIcon}"
+                        Source="back.png">
+                    </Image>
+                    <Label
+                        Style="{x:Static app:Styles.TitlePageLabel}"
+                        TextColor="{x:Static app:AppColors.Grey}"
+                        Text="{Binding BackPath}" />
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCommand}" />
+                    </HorizontalStackLayout.GestureRecognizers>
+                </HorizontalStackLayout>
+                <BoxView
+                    HeightRequest="4"
+                    WidthRequest="4"
+                    CornerRadius="4"
+                    VerticalOptions="Center"
+                    BackgroundColor="{x:Static app:AppColors.Grey}" />
+                <Label
+                    Style="{x:Static app:Styles.TitlePageLabel}"
+                    FontFamily="{x:Static app:FontNames.InterMedium}"
+                    Text="Transaction Details" />
+            </HorizontalStackLayout>
+            <app:TransactionDetailsView_WinUI
+                TransactionDetail="{Binding TransactionDetail}" />
+        </StackLayout>
+    </StackLayout>
+</app:BasePage>

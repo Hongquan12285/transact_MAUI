@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<app:BasePopup
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    BackgroundColor="{x:Static app:AppColors.PopBackground}"
+    x:Class="Transact.FilterPopup_Android"
+    x:DataType="app:FilterPopupViewModel"
+    x:Name="This">
+    <Border
+        Style="{x:Static app:Styles.PopupOtherFrame}"
+        MinimumHeightRequest="{app:DeviceEdge Edge=Height,Ratio=0.5}"
+        Padding="{app:EdgeInsets Vertical={x:Static app:Dimens.Spacing14}}"
+        VerticalOptions="EndAndExpand">
+        <StackLayout Spacing="{x:Static app:Dimens.Spacing28}">
+            <FlexLayout
+                Margin="{app:EdgeInsets Horizontal={x:Static app:Dimens.Spacing16}}"
+                HeightRequest="{x:Static app:Dimens.Height40}"
+                AlignItems="Center"
+                JustifyContent="SpaceBetween">
+                <HorizontalStackLayout Spacing="{x:Static app:Dimens.Spacing8}">
+                    <Border Style="{x:Static app:Styles.LogoPopupFrame}">
+                        <Image Source="subtract_logo.png" />
+                    </Border>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label
+                            Style="{x:Static app:Styles.BoldLabel}"
+                            FontSize="{x:Static app:Dimens.FontSizeH6}"
+                            Text="Filter" />
+                        <Label
+                            Style="{x:Static app:Styles.RegularLabel}"
+                            FontSize="{x:Static app:Dimens.FontSizeH7}"
+                            TextColor="{x:Static app:AppColors.Grey}"
+                            Text="Filter details to display" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+                <Border
+                    StrokeThickness="0"
+                    WidthRequest="{x:Static app:Dimens.Width30}"
+                    HeightRequest="{x:Static app:Dimens.Height30}">
+                    <Image
+                        WidthRequest="10"
+                        HeightRequest="10"
+                        Source="close.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Border>
+            </FlexLayout>
+            <BoxView
+                HeightRequest="1"
+                BackgroundColor="{x:Static app:AppColors.BorderGrey}" />
+
+            <StackLayout
+                VerticalOptions="FillAndExpand"
+                Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.Spacing24}}">
+                <VerticalStackLayout
+                    VerticalOptions="StartAndExpand"
+                    Spacing="{x:Static app:Dimens.Spacing24}">
+                    <VerticalStackLayout>
+                        <Label
+                            Style="{x:Static app:Styles.RegularLabel}"
+                            FontSize="{x:Static app:Dimens.FontSizeH5}"
+                            Margin="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing16}}"
+                            Text="Date Range" />
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Spacing="{x:Static app:Dimens.Spacing12}">
+                            <VerticalStackLayout HorizontalOptions="FillAndExpand">
+                                <Label
+                                    Style="{x:Static app:Styles.NoteLabel}"
+                                    FontSize="{x:Static app:Dimens.FontSizeH6}"
+                                    Margin="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing8}}"
+                                    Text="From" />
+                                <app:DatePickerControl
+                                    Placeholder="MM/YY"
+                                    DisplayStringFormat="MM/yyyy"
+                                    SpinnerFormat="MMM yyyy"
+                                    Errors="{Binding Form.DateFromErrors}"
+                                    IsValid="{Binding Form.DateFromErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
+                                    Date="{Binding Form.DateFrom}" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout HorizontalOptions="FillAndExpand">
+                                <Label
+                                    Style="{x:Static app:Styles.NoteLabel}"
+                                    FontSize="{x:Static app:Dimens.FontSizeH6}"
+                                    Margin="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing8}}"
+                                    Text="To" />
+                                <app:DatePickerControl
+                                    Placeholder="MM/YY"
+                                    DisplayStringFormat="MM/yyyy"
+                                    SpinnerFormat="MMM yyyy"
+                                    Errors="{Binding Form.DateToErrors}"
+                                    IsValid="{Binding Form.DateToErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
+                                    Date="{Binding Form.DateTo}" />
+                            </VerticalStackLayout>
+                        </StackLayout>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout>
+                        <Label
+                            Style="{x:Static app:Styles.RegularLabel}"
+                            FontSize="{x:Static app:Dimens.FontSizeH5}"
+                            Margin="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing16}}"
+                            Text="Transaction type" />
+                        <app:RadioControl
+                            BackgroundControl="{x:Static app:AppColors.White}"
+                            SelectionValue="{Binding Form.TransactionType}"
+                            RadioOptions="{Binding TransactionTypeOptions}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout>
+                        <Label
+                            Style="{x:Static app:Styles.RegularLabel}"
+                            FontSize="{x:Static app:Dimens.FontSizeH5}"
+                            Margin="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing16}}"
+                            Text="Chart View" />
+                        <app:RadioControl
+                            BackgroundControl="{x:Static app:AppColors.White}"
+                            SelectionValue="{Binding Form.ChartView}"
+                            RadioOptions="{Binding ChartViewOptions}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Button
+                    Style="{x:Static app:Styles.TextButton}"
+                    Background="{x:Static app:AppColors.DeepBlue}"
+                    Margin="{app:EdgeInsets Top={x:Static app:Dimens.Spacing24}}"
+                    Command="{Binding BackCommand}"
+                    Text="Display Filtered Results" />
+            </StackLayout>
+            <BoxView
+                Margin="1"
+                HeightRequest="1"
+                BackgroundColor="{x:Static app:AppColors.BorderGrey}" />
+        </StackLayout>
+    </Border>
+</app:BasePopup>

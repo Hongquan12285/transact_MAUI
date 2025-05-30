@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:app="clr-namespace:Transact"
+             x:Class="Transact.TransactionStatusPageAndroid"
+             x:Name="This">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <FlexLayout JustifyContent="SpaceBetween"
+            Margin="0,0,0,32"
+            Direction="Column">
+        <app:HeaderNavigateView x:Name="HeaderNavigateView"
+                    Grid.Row="0"
+                    BackCommand="{Binding BackCommand}"
+                    IsBack="False"
+                    TitlePage="Status" />
+        <VerticalStackLayout Spacing="16">
+            <Image Source="tick.png"
+               HeightRequest="80"
+               WidthRequest="80"/>
+            <Label Text="Money Sent Successful"
+               HeightRequest="20"
+               FontFamily="Inter"
+               FontSize="14"
+               TextColor="#19BD56"
+               HorizontalOptions="Center"/>
+            <Label Text="N25,00.00"
+               HeightRequest="36"
+               FontAttributes="Bold"
+               FontFamily="Inter"
+               FontSize="24"
+               TextColor="#19BD56"
+               HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+        <StackLayout HorizontalOptions="Center">
+            <Button Text="Close"
+                    HeightRequest="42"
+                    WidthRequest="380"
+                    Clicked="Close_Tapped">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#2754C8" Offset="0.0"/>
+                        <GradientStop Color="#110F72" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+        </StackLayout>
+    </FlexLayout>
+</app:BasePage>

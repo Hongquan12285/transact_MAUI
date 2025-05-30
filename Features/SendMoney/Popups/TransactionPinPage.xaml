@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              x:Class="Transact.TransactionPinPage"
+              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+              xmlns:app="clr-namespace:Transact"
+              Size="548,548"
+              CanBeDismissedByTappingOutsideOfPopup="False"
+              Color="Transparent">
+    <Border Background="White"
+            Padding="0"
+            Stroke="#80ededee"
+            StrokeThickness="10">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="20"/>
+        </Border.StrokeShape>
+        <FlexLayout JustifyContent="SpaceBetween"
+            Direction="Column" 
+            Margin="0,32,0,32">
+            <Grid ColumnDefinitions="86,*,86"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand">
+                <Label Text="Transaction Pin"
+                    FontSize="20"
+                    FontFamily="Inter"
+                    HeightRequest="30"
+                    Grid.Column="1"
+                    HorizontalOptions="Center">
+                </Label>
+                <Image Source="cancel.png"
+                    WidthRequest="24"
+                    HeightRequest="24"
+                    Grid.Column="2"
+                    HorizontalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Close_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+            <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                <Entry x:Name="Entry1"
+                       Style="{x:Static app:Styles.EntryTransactionPin}"
+                       IsPassword="True" 
+                       HorizontalTextAlignment="Center" 
+                       VerticalTextAlignment="Center"
+                       TextChanged="OnEntry_TextChanged"/>
+                <Entry x:Name="Entry2"
+                       Style="{x:Static app:Styles.EntryTransactionPin}" 
+                       IsPassword="True"
+                       HorizontalTextAlignment="Center" 
+                       VerticalTextAlignment="Center"
+                       TextChanged="OnEntry_TextChanged"/>
+                <Entry x:Name="Entry3"
+                       Style="{x:Static app:Styles.EntryTransactionPin}" 
+                       IsPassword="True"
+                       HorizontalTextAlignment="Center" 
+                       VerticalTextAlignment="Center"
+                       TextChanged="OnEntry_TextChanged"/>
+                <Entry x:Name="Entry4"
+                       Style="{x:Static app:Styles.EntryTransactionPin}"
+                       IsPassword="True"
+                       HorizontalTextAlignment="Center" 
+                       VerticalTextAlignment="Center"
+                       TextChanged="OnEntry_TextChanged"/>
+            </HorizontalStackLayout>
+            <StackLayout>
+                <Button HeightRequest="42"
+                        WidthRequest="380"
+                        Text="Confirm"
+                        HorizontalOptions="Center"
+                        Clicked="TransactionStatusFailedPage_Clicked">
+                    <Button.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#2754C8" Offset="0.0" />
+                            <GradientStop Color="#110F72" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+            </StackLayout>
+        </FlexLayout>
+    </Border>
+</mct:Popup>

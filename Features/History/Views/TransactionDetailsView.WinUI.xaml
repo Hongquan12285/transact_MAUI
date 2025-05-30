@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:app="clr-namespace:Transact"
+             x:Class="Transact.TransactionDetailsView_WinUI"
+             x:DataType="app:TransactionDetailsPageViewModel"
+             x:Name="This">
+    <VerticalStackLayout Spacing="{x:Static app:Dimens.Spacing30}">
+        <StackLayout
+            Spacing="{x:Static app:Dimens.Spacing16}"
+            Orientation="Horizontal">
+            <Border
+                HeightRequest="80"
+                WidthRequest="80"
+                StrokeThickness="0"
+                VerticalOptions="Center"
+                StrokeShape="RoundRectangle 80">
+                <Image>
+                    <Image.Triggers>
+                        <DataTrigger
+                            TargetType="Image"
+                            Binding="{Binding TransactionDetail.Status, 
+                                Source={x:Reference This}}"
+                            Value="Successful">
+                            <Setter Property="Source" Value="successfully.png" />
+                        </DataTrigger>
+                        <DataTrigger
+                            TargetType="Image"
+                            Binding="{Binding TransactionDetail.Status, 
+                                Source={x:Reference This}}"
+                            Value="Failed">
+                            <Setter Property="Source" Value="failed.png" />
+                        </DataTrigger>
+                    </Image.Triggers>
+                </Image>
+            </Border>
+            <VerticalStackLayout
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                Spacing="{x:Static app:Dimens.Spacing4}">
+                <Label
+                    Style="{x:Static app:Styles.BoldLabel}"
+                    FontSize="{x:Static app:Dimens.FontSizeH3}"
+                    Text="{Binding TransactionDetail.Money, Source={x:Reference This}}" />
+                <Label
+                    Style="{x:Static app:Styles.MediumLabel}"
+                    FontSize="{x:Static app:Dimens.FontSizeH4}"
+                    Text="{Binding TransactionDetail.Category, Source={x:Reference This}}" />
+                <Label
+                    Style="{x:Static app:Styles.RegularLabel}"
+                    FontSize="{x:Static app:Dimens.FontSizeH6}"
+                    Text="{Binding TransactionDetail.Status, 
+                        Source={x:Reference This},
+                        StringFormat='Transaction {0}!'}">
+                    <Label.Triggers>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{Binding TransactionDetail.Status, 
+                                Source={x:Reference This}}"
+                            Value="Successful">
+                            <Setter
+                                Property="TextColor"
+                                Value="{x:Static app:AppColors.Green}" />
+                        </DataTrigger>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{Binding TransactionDetail.Status, 
+                                Source={x:Reference This}}"
+                            Value="Failed">
+                            <Setter
+                                Property="TextColor"
+                                Value="{x:Static app:AppColors.Red}" />
+                        </DataTrigger>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{Binding TransactionDetail.Status, 
+                                Source={x:Reference This}}"
+                            Value="Waiting">
+                            <Setter
+                                Property="TextColor"
+                                Value="{x:Static app:AppColors.Yellow}" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+            </VerticalStackLayout>
+            <VerticalStackLayout
+                VerticalOptions="Center"
+                Spacing="{x:Static app:Dimens.Spacing8}">
+                <Button
+                    Style="{x:Static app:Styles.TextButton}"
+                    HeightRequest="{x:Static app:Dimens.Height48}"
+                    WidthRequest="{x:Static app:Dimens.Width246}"
+                    Background="{x:Static app:AppColors.DeepBlue}"
+                    Command="{Binding ShareDetailCommand}"
+                    Text="Share" />
+                <Button
+                    Style="{x:Static app:Styles.TextOutlineButton}"
+                    HeightRequest="{x:Static app:Dimens.Height48}"
+                    WidthRequest="{x:Static app:Dimens.Width246}"
+                    Background="{x:Static app:AppColors.White}"
+                    Text="Print" />
+            </VerticalStackLayout>
+        </StackLayout>
+        <VerticalStackLayout
+            Spacing="{x:Static app:Dimens.Spacing8}">
+            <VerticalStackLayout>
+                <FlexLayout
+                    JustifyContent="SpaceBetween"
+                    AlignItems="Center"
+                    HeightRequest="{x:Static app:Dimens.Height42}"
+                    Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.Spacing16}}">
+                    <Label
+                        TextColor="{x:Static app:AppColors.Grey}"
+                        FontSize="{x:Static app:Dimens.FontSizeH7}"
+                        FontFamily="{x:Static app:FontNames.InterMedium}"
+                        Text="Bank" />
+                    <Label
+                        TextColor="{x:Static app:AppColors.Black}"
+                        FontSize="{x:Static app:Dimens.FontSizeH7}"
+                        FontFamily="{x:Static app:FontNames.InterMedium}"
+                        Text="{Binding TransactionDetail.Bank, Source={x:Reference This}}" />
+                </FlexLayout>
+                <BoxView
+                    HeightRequest="1"
+                    BackgroundColor="{x:Static app:AppColors.BorderGrey}" />
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <FlexLayout
+                    JustifyContent="SpaceBetween"
+                    AlignItems="Center"
+                    HeightRequest="{x:Static app:Dimens.Height42}"
+                    Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.Spacing16}}">
+                    <Label
+                        TextColor="{x:Static app:AppColors.Grey}"
+                        FontSize="{x:Static app:Dimens.FontSizeH7}"
+                        FontFamily="{x:Static app:FontNames.InterMedium}"
+                        Text="Account No." />
+                    <Label
+                        TextColor="{x:Static app:AppColors.Black}"
+                        FontSize="{x:Static app:Dimens.FontSizeH7}"
+                        FontFamily="{x:Static app:FontNames.InterMedium}"
+                        Text="{Binding TransactionDetail.AccountNo, Source={x:Reference This}}" />
+                </FlexLayout>
+                <BoxView
+                    HeightRequest="1"
+                    BackgroundColor="{x:Static app:AppColors.BorderGrey}" />
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <FlexLayout
+                    JustifyContent="SpaceBetween"
+                    AlignItems="Center"
+                    HeightRequest="{x:Static app:Dimens.Height42}"
+                    Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.Spacing16}}">
+                    <Label
+                        TextColor="{x:Static app:AppColors.Grey}"
+                        FontSize="{x:Static app:Dimens.FontSizeH7}"
+                        FontFamily="{x:Static app:FontNames.InterMedium}"
+                        Text="Account Name" />
+                    <Label
+                        TextColor="{x:Static app:AppColors.Black}"
+                        FontSize="{x:Static app:Dimens.FontSizeH7}"
+                        FontFamily="{x:Static app:FontNames.InterMedium}"
+                        Text="{Binding TransactionDetail.AccountName, Source={x:Reference This}}" />
+                </FlexLayout>
+                <BoxView
+                    HeightRequest="1"
+                    BackgroundColor="{x:Static app:AppColors.BorderGrey}" />
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <FlexLayout
+                    JustifyContent="SpaceBetween"
+                    AlignItems="Center"
+                    HeightRequest="{x:Static app:Dimens.Height42}"
+                    Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.Spacing16}}">
+                    <Label
+                        TextColor="{x:Static app:AppColors.Grey}"
+                        FontSize="{x:Static app:Dimens.FontSizeH7}"
+                        FontFamily="{x:Static app:FontNames.InterMedium}"
+                        Text="From" />
+                    <Label
+                        TextColor="{x:Static app:AppColors.Black}"
+                        FontSize="{x:Static app:Dimens.FontSizeH7}"
+                        FontFamily="{x:Static app:FontNames.InterMedium}"
+                        Text="{Binding TransactionDetail.From, Source={x:Reference This}}" />
+                </FlexLayout>
+                <BoxView
+                    HeightRequest="1"
+                    BackgroundColor="{x:Static app:AppColors.BorderGrey}" />
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <FlexLayout
+                    JustifyContent="SpaceBetween"
+                    AlignItems="Center"
+                    HeightRequest="{x:Static app:Dimens.Height42}"
+                    Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.Spacing16}}">
+                    <Label
+                        TextColor="{x:Static app:AppColors.Grey}"
+                        FontSize="{x:Static app:Dimens.FontSizeH7}"
+                        FontFamily="{x:Static app:FontNames.InterMedium}"
+                        Text="Date" />
+                    <Label
+                        TextColor="{x:Static app:AppColors.Black}"
+                        FontSize="{x:Static app:Dimens.FontSizeH7}"
+                        FontFamily="{x:Static app:FontNames.InterMedium}"
+                        Text="{Binding TransactionDetail.Date, Source={x:Reference This}}" />
+                </FlexLayout>
+                <BoxView
+                    HeightRequest="1"
+                    BackgroundColor="{x:Static app:AppColors.BorderGrey}" />
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <FlexLayout
+                    JustifyContent="SpaceBetween"
+                    AlignItems="Center"
+                    HeightRequest="{x:Static app:Dimens.Height42}"
+                    Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.Spacing16}}">
+                    <Label
+                        TextColor="{x:Static app:AppColors.Grey}"
+                        FontSize="{x:Static app:Dimens.FontSizeH7}"
+                        FontFamily="{x:Static app:FontNames.InterMedium}"
+                        Text="Transaction Number" />
+                    <Label
+                        TextColor="{x:Static app:AppColors.Black}"
+                        FontSize="{x:Static app:Dimens.FontSizeH7}"
+                        FontFamily="{x:Static app:FontNames.InterMedium}"
+                        Text="{Binding TransactionDetail.TransactionNumber, Source={x:Reference This}}" />
+                </FlexLayout>
+                <BoxView
+                    HeightRequest="1"
+                    BackgroundColor="{x:Static app:AppColors.BorderGrey}" />
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <FlexLayout
+                    JustifyContent="SpaceBetween"
+                    AlignItems="Center"
+                    HeightRequest="{x:Static app:Dimens.Height42}"
+                    Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.Spacing16}}">
+                    <Label
+                        TextColor="{x:Static app:AppColors.Grey}"
+                        FontSize="{x:Static app:Dimens.FontSizeH7}"
+                        FontFamily="{x:Static app:FontNames.InterMedium}"
+                        Text="Remark" />
+                    <Label
+                        TextColor="{x:Static app:AppColors.Black}"
+                        FontSize="{x:Static app:Dimens.FontSizeH7}"
+                        FontFamily="{x:Static app:FontNames.InterMedium}"
+                        Text="{Binding TransactionDetail.Remark, Source={x:Reference This}}" />
+                </FlexLayout>
+                <BoxView
+                    HeightRequest="1"
+                    BackgroundColor="{x:Static app:AppColors.BorderGrey}" />
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentView>

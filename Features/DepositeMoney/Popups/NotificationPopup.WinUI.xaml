@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<app:BasePopup
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    Shell.PresentationMode="Modal"
+    BackgroundColor="{x:Static app:AppColors.PopBackground}"
+    x:Class="Transact.NotificationPopup_WinUI"
+    x:DataType="app:NotificationPopupViewModel"
+    x:Name="This">
+    <Grid>
+        <BoxView Style="{x:Static app:Styles.OverLayBoxView}">
+            <BoxView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding BackCommand}" />
+            </BoxView.GestureRecognizers>
+        </BoxView>
+        <Border
+            Style="{x:Static app:Styles.PopupFrame}"
+            MaximumWidthRequest="{x:Static app:Dimens.PopupWidth}"
+            MaximumHeightRequest="{x:Static app:Dimens.PopupHeight}"
+            Margin="{app:EdgeInsets 
+                Vertical={x:Static app:Dimens.Spacing32}, 
+                Horizontal={x:Static app:Dimens.Spacing50}}"
+            Padding="{app:EdgeInsets 
+                Vertical={x:Static app:Dimens.Spacing32}, 
+                Horizontal={x:Static app:Dimens.Spacing50}}">
+            <StackLayout>
+                <Grid
+                    HeightRequest="{x:Static app:Dimens.Height30}"
+                    Margin="{app:EdgeInsets Bottom={x:Static app:Dimens.Spacing40}}"
+                    RowDefinitions="auto"
+                    ColumnDefinitions="*,auto,*">
+                    <Label
+                        Grid.Column="1"
+                        Style="{x:Static app:Styles.CaptionFormLabel}"
+                        TextColor="{x:Static app:AppColors.Blue}"
+                        Text="Filter" />
+                    <Image
+                        Grid.Column="2"
+                        HorizontalOptions="End"
+                        WidthRequest="20"
+                        Source="close.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+                <VerticalStackLayout
+                    VerticalOptions="CenterAndExpand"
+                    Spacing="{x:Static app:Dimens.Spacing16}">
+                    <Border
+                        HeightRequest="80"
+                        WidthRequest="80"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 80">
+                        <Image>
+                            <Image.Triggers>
+                                <DataTrigger
+                                    TargetType="Image"
+                                    Binding="{Binding TransactionStatus.IsSuccess}"
+                                    Value="true">
+                                    <Setter Property="Source" Value="successfully.png" />
+                                </DataTrigger>
+                                <DataTrigger
+                                    TargetType="Image"
+                                    Binding="{Binding TransactionStatus.IsSuccess}"
+                                    Value="false">
+                                    <Setter Property="Source" Value="failed.png" />
+                                </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+                    </Border>
+                    <Label
+                        Style="{x:Static app:Styles.DescriptionFormLabel}"
+                        HorizontalTextAlignment="Center"
+                        Text="Deposit Made Successfully">
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding TransactionStatus.IsSuccess}"
+                                Value="true">
+                                <Setter Property="TextColor" Value="{x:Static app:AppColors.Green}" />
+                            </DataTrigger>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding TransactionStatus.IsSuccess}"
+                                Value="false">
+                                <Setter Property="TextColor" Value="{x:Static app:AppColors.Red}" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Label
+                        Style="{x:Static app:Styles.BoldLabel}"
+                        HorizontalTextAlignment="Center"
+                        FontSize="{x:Static app:Dimens.FontSizeH4}"
+                        Text="N25,00.00">
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding TransactionStatus.IsSuccess}"
+                                Value="true">
+                                <Setter Property="TextColor" Value="{x:Static app:AppColors.Green}" />
+                            </DataTrigger>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding TransactionStatus.IsSuccess}"
+                                Value="false">
+                                <Setter Property="TextColor" Value="{x:Static app:AppColors.Red}" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                </VerticalStackLayout>
+                <Button
+                    Style="{x:Static app:Styles.TextButton}"
+                    Background="{x:Static app:AppColors.DeepBlue}"
+                    Margin="{app:EdgeInsets Top={x:Static app:Dimens.Spacing24}}"
+                    Command="{Binding BackCommand}"
+                    Text="Done" />
+            </StackLayout>
+        </Border>
+    </Grid>
+</app:BasePopup>

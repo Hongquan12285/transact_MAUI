@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Transact"
+    x:Class="Transact.AndroidTabBarLayout"
+    Shell.TabBarForegroundColor="#2754C8"
+    Shell.TabBarTitleColor="#2754C8"
+    Shell.TabBarUnselectedColor="#989898">
+
+    <!-- TabBar -->
+    <TabBar>
+        <Tab
+            Title="Home"
+            Icon="home_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate local:HomePage}" />
+        </Tab>
+        <Tab
+            Title="Deposit"
+            Icon="deposit.png">
+            <ShellContent ContentTemplate="{DataTemplate local:DepositMoneyPage}" />
+        </Tab>
+        <Tab
+            Title="Send"
+            Icon="send.png">
+            <ShellContent ContentTemplate="{DataTemplate local:SendMoneyPage}"/>
+        </Tab>
+        <Tab
+            Title="History"
+            Icon="history_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate local:HistoryPage}" />
+        </Tab>
+    </TabBar>
+</Shell>
+

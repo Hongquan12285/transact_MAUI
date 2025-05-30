@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<app:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="Transact.HomePage"
+    x:DataType="app:HomePageViewModel"
+    BackgroundColor="{x:Static app:AppColors.offbackground}">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ContentView Grid.Row="0">
+            <ContentView.Content>
+                <OnPlatform x:TypeArguments="View">
+                    <On Platform="WinUI">
+                        <app:HeaderView />
+                    </On>
+                    <On Platform="Android">
+                        <app:HeaderViewMobile />
+                    </On>
+                </OnPlatform>
+            </ContentView.Content>
+        </ContentView>
+
+        <VerticalStackLayout Grid.Row="1"
+                             Spacing="{OnPlatform WinUI={x:Static app:Dimens.Spacing10}, Android=5}" 
+                             Padding="{OnPlatform WinUI={app:EdgeInsets 
+                                      Horizontal={x:Static app:Dimens.Spacing100}, 
+                                      Top={x:Static app:Dimens.Spacing20}}, 
+                                      Android={app:EdgeInsets Horizontal= {x:Static app:Dimens.Spacing24}, 
+                                      Top={x:Static app:Dimens.Spacing10}}}">
+            <Label Text="Home" 
+                   Style="{x:Static app:Styles.LabelStyle}"
+                   IsVisible="{OnPlatform WinUI=true, Android=false}" />
+            <Border Background="{x:Static app:AppColors.Gradient}" 
+                    StrokeShape="RoundRectangle 32" 
+                    Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.Padding38}}" 
+                    HeightRequest="{x:Static app:Dimens.Height166}">
+                <Grid VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <VerticalStackLayout 
+                        Grid.Column="0" 
+                        Spacing="{x:Static app:Dimens.Spacing5}" 
+                        Margin="{app:EdgeInsets Left={x:Static app:Dimens.Spacing30}}" 
+                        IsVisible="{OnPlatform WinUI=true, Android=false}">
+                        <Label 
+                               Text="Welcome" 
+                               Style="{x:Static app:Styles.Labelwhite}"
+                               FontSize="{x:Static app:Dimens.FontSizeH6}" />
+                        <Label Text="Patricia!" 
+                               Style="{x:Static app:Styles.Labelwhite}"
+                               FontSize="{x:Static app:Dimens.FontSizeH3}" 
+                               FontAttributes="Bold" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout 
+                        Grid.ColumnSpan="3" 
+                        HorizontalOptions="{OnPlatform Android= Fill , WinUI= End}" 
+                        VerticalOptions="Center" Spacing="{x:Static app:Dimens.Spacing5}" 
+                        Margin="{OnPlatform WinUI={app:EdgeInsets Right={x:Static app:Dimens.Spacing30}}, Android=0}">
+                        <app:BalanceView/>
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+
+            <Grid Margin="{app:EdgeInsets Vertical={x:Static app:Dimens.Spacing34}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Recent Transactions" 
+                       Style="{x:Static app:Styles.Labelprimary}" 
+                       FontSize="{x:Static app:Dimens.FontSizeH5}" 
+                       HorizontalOptions="Start" />
+                <Label 
+                    Grid.Column="1"
+                    Text="{Binding SeeAllText}"
+                    Style="{x:Static app:Styles.LabelGradent}"
+                    HorizontalOptions="End"
+                    FontSize="{x:Static app:Dimens.FontSizeH6}">
+                    <Label.Triggers>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{Binding ShowAll}"
+                            Value="True">
+                            <Setter Property="Text" Value="See Less" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding ShowAll}" Value="False">
+                            <Setter Property="Text" Value="See All" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ToggleSeeAllCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+            <telerik:RadCollectionView x:Name="TransactionListView" 
+                                       ItemsSource="{Binding VisibleTransactions}" 
+                                       HeightRequest="400"
+                                       ItemViewStyle="{StaticResource NoBorderStyle}"
+                                       SelectionMode="None">
+                <telerik:RadCollectionView.ItemsLayout>
+                    <telerik:CollectionViewLinearLayout
+                            Orientation="Vertical" 
+                            ItemSpacing="{x:Static app:Dimens.Spacing5}" /> 
+                </telerik:RadCollectionView.ItemsLayout>
+                <telerik:RadCollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="app:Transaction">
+                        <Border Padding="{app:EdgeInsets All={x:Static app:Dimens.Spacing5}}" 
+                                StrokeShape="RoundRectangle 10" 
+                                HeightRequest="82" 
+                                BackgroundColor="{x:Static app:AppColors.White}" 
+                                StrokeThickness="0" 
+                                Margin="{app:EdgeInsets Vertical={x:Static app:Dimens.Spacing5}}">  
+                            <Grid Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.Spacing10}, 
+                                           Vertical={x:Static app:Dimens.Spacing5}}" 
+                                  VerticalOptions="Center" ColumnSpacing="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <toolkit:AvatarView Grid.RowSpan="2" 
+                                                    ImageSource="{Binding ImageSource}" 
+                                                    TextColor="{Binding TextColor}"
+                                                    WidthRequest="44" 
+                                                    HeightRequest="44" />
+                                <Label Style="{x:Static app:Styles.Labelprimary}" 
+                                       Grid.Column="1" Text="{Binding Title}" 
+                                       FontSize="{x:Static app:Dimens.FontSizeH5}" />
+                                <Label Grid.Row="1" 
+                                       Grid.Column="1" 
+                                       Text="{Binding Date}" 
+                                       FontSize="{x:Static app:Dimens.FontSizeH8}"
+                                       Style="{x:Static app:Styles.LabelGrey}" />
+                                <Label Style="{x:Static app:Styles.Labelprimary}" 
+                                       Grid.Column="2" Text="{Binding Amount}" 
+                                       FontSize="{x:Static app:Dimens.FontSizeH4}" 
+                                       HorizontalOptions="End" />
+                                <Label Grid.Row="1" Grid.Column="2" 
+                                       Text="{Binding Status}" 
+                                       FontFamily="{x:Static app:FontNames.InterRegular}"
+                                       TextColor="{Binding StatusColor}"
+                                       FontSize="{x:Static app:Dimens.FontSizeH8}"
+                                       HorizontalOptions="End" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </telerik:RadCollectionView.ItemTemplate>
+            </telerik:RadCollectionView>
+        </VerticalStackLayout>
+    </Grid>
+</app:BasePage>

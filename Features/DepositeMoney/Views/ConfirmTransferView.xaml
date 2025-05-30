@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    x:Class="Transact.ConfirmTransferView"
+    x:DataType="app:BankTransferPageViewModel"
+    x:Name="This">
+    <StackLayout
+        VerticalOptions="{x:OnPlatform 
+            Android=FillAndExpand}"
+        WidthRequest="{x:Static app:Dimens.FormWidth}"
+        Margin="{app:EdgeInsets 
+            Horizontal={x:Static app:Dimens.Spacing24}, 
+            Vertical={x:Static app:Dimens.Spacing38}}"
+        Spacing="{x:Static app:Dimens.Spacing32}">
+        <Label
+            Style="{x:Static app:Styles.CaptionFormLabel}"
+            Text="{Binding Caption , Source={x:Reference This}}"
+            HorizontalTextAlignment="Center"
+            FontFamily="{x:Static app:FontNames.InterMedium}" />
+
+        <Label
+            Style="{x:Static app:Styles.BoldLabel}"
+            FontSize="{x:Static app:Dimens.FontSizeH3}"
+            HorizontalTextAlignment="Center"
+            Text="{Binding Money, Source={x:Reference This}}"
+            TextColor="{x:Static app:AppColors.Blue}" />
+
+        <Label
+            Style="{x:Static app:Styles.DescriptionFormLabel}"
+            Text="{Binding Note , Source={x:Reference This}}"
+            HorizontalTextAlignment="Center"
+            FontFamily="{x:Static app:FontNames.InterMedium}" />
+
+        <StackLayout   
+            VerticalOptions="{x:OnPlatform 
+                Android=FillAndExpand}">
+            <VerticalStackLayout
+                VerticalOptions="StartAndExpand"
+                Spacing="{x:Static app:Dimens.Spacing8}"
+                BindableLayout.ItemsSource="{Binding ConfirmDetails , Source={x:Reference This}}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout>
+                            <FlexLayout
+                                x:DataType="app:ConfirmDetailModel"
+                                JustifyContent="SpaceBetween"
+                                AlignItems="Center"
+                                HeightRequest="{x:Static app:Dimens.Height42}"
+                                Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.Spacing16}}">
+                                <Label
+                                    TextColor="{x:Static app:AppColors.Grey}"
+                                    FontSize="{x:Static app:Dimens.FontSizeH7}"
+                                    FontFamily="{x:Static app:FontNames.InterMedium}"
+                                    Text="{Binding Title}" />
+                                <Label
+                                    TextColor="{x:Static app:AppColors.Black}"
+                                    FontSize="{x:Static app:Dimens.FontSizeH7}"
+                                    FontFamily="{x:Static app:FontNames.InterMedium}"
+                                    Text="{Binding Content}" />
+                            </FlexLayout>
+                            <BoxView
+                                HeightRequest="1"
+                                BackgroundColor="{x:Static app:AppColors.BorderGrey}" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+            <Button
+                Style="{x:Static app:Styles.TextButton}"
+                Background="{x:Static app:AppColors.DeepBlue}"
+                Margin="{app:EdgeInsets Top={x:Static app:Dimens.Spacing8}}"
+                Command="{Binding BackCommand}"
+                Text="Done" />
+        </StackLayout>
+    </StackLayout>
+</ContentView>

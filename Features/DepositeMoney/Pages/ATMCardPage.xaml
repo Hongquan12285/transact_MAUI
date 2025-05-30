@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<app:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:Transact"
+    BackgroundColor="{x:Static app:AppColors.WhiteLight}"
+    x:Class="Transact.ATMCardPage"
+    x:DataType="app:ATMCardPageViewModel"
+    x:Name="This">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <StackLayout>
+        <app:HeaderNavigateView
+            IsVisible="{x:OnPlatform 
+                Android=true,
+                WinUI=false}"
+            BackCommand="{Binding BackCommand}"
+            IsBack="True"
+            TitlePage="Deposit Money" />
+        <app:HeaderView
+            IsVisible="{x:OnPlatform 
+                Android=false,
+                WinUI=true}" />
+        <HorizontalStackLayout
+            IsVisible="{x:OnPlatform 
+                Android=false,
+                WinUI=true}"
+            Margin="{app:EdgeInsets Left={x:Static app:Dimens.Spacing88}, Top={x:Static app:Dimens.Spacing24}}"
+            Spacing="{x:Static app:Dimens.Spacing16}">
+            <HorizontalStackLayout Spacing="{x:Static app:Dimens.Spacing16}">
+                <Image
+                    Style="{x:Static app:Styles.BaseIcon}"
+                    Source="back.png">
+                </Image>
+                <Label
+                    Style="{x:Static app:Styles.TitlePageLabel}"
+                    TextColor="{x:Static app:AppColors.Grey}"
+                    Text="Deposit Money" />
+                <HorizontalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}" />
+                </HorizontalStackLayout.GestureRecognizers>
+            </HorizontalStackLayout>
+            <BoxView
+                HeightRequest="4"
+                WidthRequest="4"
+                CornerRadius="4"
+                VerticalOptions="Center"
+                BackgroundColor="{x:Static app:AppColors.Grey}" />
+            <Label
+                Style="{x:Static app:Styles.TitlePageLabel}"
+                FontFamily="{x:Static app:FontNames.InterMedium}"
+                Text="ATM Card" />
+        </HorizontalStackLayout>
+        <app:ATMCardFormView
+            Caption="ATM Card"
+            Money="N25,000.00"
+            VerticalOptions="{x:OnPlatform 
+                Android=FillAndExpand,
+                WinUI=CenterAndExpand}"
+            HorizontalOptions="CenterAndExpand" />
+    </StackLayout>
+</app:BasePage>
