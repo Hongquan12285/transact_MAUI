@@ -88,6 +88,7 @@
 	  <Folder Include="Features\History\Controls\" />
 	  <Folder Include="Features\History\Views\" />
 	  <Folder Include="Features\Login\Models\" />
+	  <Folder Include="Features\MinSoftware\Controls\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -146,6 +147,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Login\Popups\SignUpOtpPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\MinSoftware\Pages\MinSoftwavePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\SendMoney\Pages\LoadingSendMoneyPage.xaml">

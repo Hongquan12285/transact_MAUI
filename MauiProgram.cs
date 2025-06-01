@@ -33,6 +33,8 @@ namespace Transact
 
 #if DEBUG
             builder.Logging.AddDebug();
+            builder.Services.AddTransient<MaxCareViewModel>();
+            builder.Services.AddTransient<MinSoftwavePage>();
 #endif
 
             return builder.Build();

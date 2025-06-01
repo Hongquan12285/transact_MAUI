@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:app="clr-namespace:Transact"
+    x:Class="Transact.MinSoftwavePage"
+    x:DataType="app:MaxCareViewModel"
+    Title="MAX CARE">
+
+    <Grid
+        RowDefinitions="Auto,Auto,*,Auto"
+        BackgroundColor="White">
+        <!-- Header Section -->
+        <Grid
+            ColumnDefinitions="3*,2*"
+            RowDefinitions="Auto"
+            Padding="0,0,0,10">
+            <!-- Left Column -->
+            <VerticalStackLayout
+                Grid.Column="0"
+                Padding="10"
+                Spacing="10">
+                <HorizontalStackLayout
+                    Spacing="10"
+                    VerticalOptions="Center">
+                    <Image
+                        Source="logomin.jfif"
+                        Aspect="AspectFit"
+                        HeightRequest="40"
+                        WidthRequest="40" />
+                    <Label
+                        Text="MAX CARE v25.05.30 - Phần Mềm Quản Lý Và Chăm Sóc Tài Khoản Facebook - MIN SOFTWARE"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center"
+                        LineBreakMode="TailTruncation" />
+                </HorizontalStackLayout>
+
+                <Grid
+                    ColumnDefinitions="*,*,*,*,*,*"
+                    BackgroundColor="#F0F0F0"
+                    Padding="5"
+                    ColumnSpacing="0">
+                    <!-- Menu Items -->
+                    <HorizontalStackLayout
+                        Grid.Column="0"
+                        HorizontalOptions="Center"
+                        Spacing="5">
+                        <Image
+                            Source="settingmin.png"
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            VerticalOptions="Center" />
+                        <Label
+                            Text="Cấu hình chung"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout
+                        Grid.Column="1"
+                        HorizontalOptions="Center"
+                        Spacing="5">
+                        <Image
+                            Source="chattingmin.png"
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            VerticalOptions="Center" />
+                        <Label
+                            Text="Cấu hình tương tác"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout
+                        Grid.Column="2"
+                        HorizontalOptions="Center"
+                        Spacing="5">
+                        <Image
+                            Source="trashbinmin.png"
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            VerticalOptions="Center" />
+                        <Label
+                            Text="Tài khoản đã xóa"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout
+                        Grid.Column="3"
+                        HorizontalOptions="Center"
+                        Spacing="5">
+                        <Image
+                            Source="dollarmin.png"
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            VerticalOptions="Center" />
+                        <Label
+                            Text="Kiếm tiền"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout
+                        Grid.Column="4"
+                        HorizontalOptions="Center"
+                        Spacing="5">
+                        <Image
+                            Source="gridmin.png"
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            VerticalOptions="Center" />
+                        <Label
+                            Text="Tiện ích"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout
+                        Grid.Column="5"
+                        HorizontalOptions="Center"
+                        Spacing="5">
+                        <Image
+                            Source="contactmin.png"
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            VerticalOptions="Center" />
+                        <Label
+                            Text="Liên hệ"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+
+            <!-- Right Column: Banner -->
+            <Image
+                Grid.Column="1"
+                Source="bannermin.png"
+                Aspect="AspectFill"
+                Margin="0,0,20,0" />
+        </Grid>
+
+        <Border
+            Grid.Row="1"
+            Stroke="LightGray"
+            StrokeThickness="0.5"
+            Padding="10"
+            BackgroundColor="White">
+
+            <HorizontalStackLayout
+                Spacing="10"
+                VerticalOptions="Center"
+                HorizontalOptions="Fill">
+
+                <!-- Chạy Tương Tác -->
+                <Button
+                    Text="Chạy Tương Tác"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    BackgroundColor="White"
+                    BorderColor="LightGray"
+                    BorderWidth="1"
+                    HeightRequest="60"
+                    CornerRadius="5"
+                    ContentLayout="Right,5"
+                    ImageSource="playmin.png" />
+
+                <Frame
+                    BorderColor="LightGray"
+                    CornerRadius="5"
+                    HasShadow="False"
+                    Padding="5"
+                    HeightRequest="60">
+                    <HorizontalStackLayout
+                        VerticalOptions="Center"
+                        Spacing="10">
+                        <!-- Picker -->
+                        <Picker
+                            WidthRequest="100"
+                            BackgroundColor="LightGray"
+                            VerticalOptions="Center">
+                            <Picker.Items>
+                                <x:String>UID</x:String>
+                            </Picker.Items>
+                        </Picker>
+
+                        <!-- Entry + Button -->
+                        <HorizontalStackLayout
+                            VerticalOptions="Center"
+                            Spacing="0">
+                            <Entry
+                                Placeholder="Search..."
+                                WidthRequest="300"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center"
+                                ClearButtonVisibility="WhileEditing"/>
+                            <ImageButton
+                                Source="searchmin.png"
+                                WidthRequest="20"
+                                HeightRequest="30"
+                                Aspect="AspectFit"
+                                BackgroundColor="Transparent"
+                                Margin="0" />
+                        </HorizontalStackLayout>
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <Frame
+                    BorderColor="LightGray"
+                    CornerRadius="5"
+                    HasShadow="False"
+                    Padding="5"
+                    HeightRequest="60">
+
+                    <HorizontalStackLayout
+                        Spacing="10"
+                        VerticalOptions="Center">
+
+                        <!-- Thư mục -->
+                        <Label
+                            Text="Thư mục:"
+                            VerticalOptions="Center"
+                            WidthRequest="65" />
+
+                        <Picker
+                            WidthRequest="200"
+                            BackgroundColor="LightGray"
+                            VerticalOptions="Center">
+                            <Picker.Items>
+                                <x:String>Entry</x:String>
+                            </Picker.Items>
+                        </Picker>
+
+                        <!-- Lọc -->
+                        <Label
+                            Text="Lọc:"
+                            VerticalOptions="Center"
+                            WidthRequest="40" />
+
+                        <Picker
+                            WidthRequest="200"
+                            BackgroundColor="LightGray"
+                            VerticalOptions="Center">
+                            <Picker.Items>
+                                <x:String>Tất cả trạng thái</x:String>
+                                <x:String>Live</x:String>
+                            </Picker.Items>
+                        </Picker>
+
+                        <!-- Các nút hình ảnh -->
+                        <ImageButton
+                            Source="plusmin.png"
+                            HeightRequest="35"
+                            BackgroundColor="Transparent"
+                            BorderColor="LightGray"       
+                            BorderWidth="1"
+                            CornerRadius="5"
+                            Aspect="AspectFit"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+
+                        <ImageButton
+                            Source="pencilmin.png"
+                            HeightRequest="35"
+                            BackgroundColor="Transparent"
+                            BorderColor="LightGray"
+                            BorderWidth="1"
+                            CornerRadius="5"
+                            Aspect="AspectFit"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+
+                        <ImageButton
+                            Source="minusmin.png"
+                            HeightRequest="35"
+                            BackgroundColor="Transparent"
+                            BorderColor="LightGray"
+                            BorderWidth="1"
+                            CornerRadius="5"
+                            Aspect="AspectFit"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                        <ImageButton
+                            Source="loadingmin.png"
+                            HeightRequest="35"
+                            BackgroundColor="Transparent"
+                            BorderColor="LightGray"
+                            BorderWidth="1"
+                            CornerRadius="5"
+                            Aspect="AspectFit"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                        <!-- Nút Nhập tài khoản -->
+                        <Button
+                            Text="Nhập tài khoản"
+                            TextColor="Black"
+                            FontAttributes="Bold"
+                            BackgroundColor="LightGray"
+                            HeightRequest="35"
+                            WidthRequest="200"
+                            CornerRadius="5"
+                            ImageSource="foldermin.png"
+                            VerticalOptions="Center" />
+
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <ImageButton
+                    WidthRequest="60"
+                    HeightRequest="60"
+                    BackgroundColor="Transparent"
+                    Source="auditmin.png" />
+
+                <!-- Close Chromedriver -->
+                <Button
+                    Text="Close Chromedriver"
+                    BackgroundColor="White"
+                    TextColor="Black"
+                    BorderColor="LightGray"
+                    BorderWidth="1"
+                    HeightRequest="60"
+                    CornerRadius="5">
+                </Button>
+            </HorizontalStackLayout>
+        </Border>
+
+
+        <!-- Header Table-->
+        <Grid Grid.Row="2" RowDefinitions="Auto,*">
+            <Border
+                Stroke="#CCCCCC"
+                StrokeThickness="0.5"
+                Padding="0">
+                <Grid
+                    ColumnDefinitions="70,70,150,150,200,150,100,100,200,100,700"
+                    BackgroundColor="White">
+                    <Border
+                        Grid.Column="0"
+                        Stroke="#CCCCCC"
+                        StrokeThickness="0.5">
+                        <Label
+                            Text="Chọn"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Padding="5" />
+                    </Border>
+                    <Border
+                        Grid.Column="1"
+                        Stroke="#CCCCCC"
+                        StrokeThickness="0.5">
+                        <Label
+                            Text="STT"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Padding="5" />
+                    </Border>
+                    <Border
+                        Grid.Column="2"
+                        Stroke="#CCCCCC"
+                        StrokeThickness="0.5">
+                        <Label
+                            Text="UID"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            LineBreakMode="TailTruncation"
+                            Padding="5" />
+                    </Border>
+                    <Border
+                        Grid.Column="3"
+                        Stroke="#CCCCCC"
+                        StrokeThickness="0.5">
+                        <Label
+                            Text="Mật khẩu"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            LineBreakMode="TailTruncation"
+                            Padding="5" />
+                    </Border>
+                    <Border
+                        Grid.Column="4"
+                        Stroke="#CCCCCC"
+                        StrokeThickness="0.5">
+                        <Label
+                            Text="Email"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            LineBreakMode="TailTruncation"
+                            Padding="5" />
+                    </Border>
+                    <Border
+                        Grid.Column="5"
+                        Stroke="#CCCCCC"
+                        StrokeThickness="0.5">
+                        <Label
+                            Text="Tên"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            LineBreakMode="TailTruncation"
+                            Padding="5" />
+                    </Border>
+                    <Border
+                        Grid.Column="6"
+                        Stroke="#CCCCCC"
+                        StrokeThickness="0.5">
+                        <Label
+                            Text="Proxy"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            LineBreakMode="TailTruncation"
+                            Padding="5" />
+                    </Border>
+                    <Border
+                        Grid.Column="7"
+                        Stroke="#CCCCCC"
+                        StrokeThickness="0.5">
+                        <Label
+                            Text="Thư mục"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            LineBreakMode="TailTruncation"
+                            Padding="5" />
+                    </Border>
+                    <Border
+                        Grid.Column="8"
+                        Stroke="#CCCCCC"
+                        StrokeThickness="0.5">
+                        <Label
+                            Text="Lần tương tác cuối"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            LineBreakMode="TailTruncation"
+                            Padding="5" />
+                    </Border>
+                    <Border
+                        Grid.Column="9"
+                        Stroke="#CCCCCC"
+                        StrokeThickness="0.5">
+                        <Label
+                            Text="Tình trạng"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            LineBreakMode="TailTruncation"
+                            Padding="5" />
+                    </Border>
+                    <Border
+                        Grid.Column="10"
+                        Stroke="#CCCCCC"
+                        StrokeThickness="0.5">
+                        <Label
+                            Text="Trạng thái"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            Padding="5" />
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Table Body-->
+            <ScrollView
+                Grid.Row="2"
+                Orientation="Vertical">
+                <CollectionView
+                    ItemsSource="{Binding Accounts}"
+                    SelectionMode="None"
+                    BackgroundColor="#aabe90"
+                    VerticalScrollBarVisibility="Always">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate
+                            x:DataType="app:FacebookAccount">
+                            <Border
+                                Stroke="#CCCCCC"
+                                StrokeThickness="0.5"
+                                Margin="0,-0.5,0,0">
+                                <Grid
+                                    ColumnDefinitions="70,70,150,150,200,150,100,100,200,100,700">
+                                    <Border
+                                        Grid.Column="0"
+                                        Stroke="#CCCCCC"
+                                        StrokeThickness="0.5">
+                                        <CheckBox
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center" />
+                                    </Border>
+
+                                    <Border
+                                        Grid.Column="1"
+                                        Stroke="#CCCCCC"
+                                        StrokeThickness="0.5">
+                                        <Label
+                                            Text="{Binding STT}"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            Padding="5" />
+                                    </Border>
+                                    <Border
+                                        Grid.Column="2"
+                                        Stroke="#CCCCCC"
+                                        StrokeThickness="0.5">
+                                        <Label
+                                            Text="{Binding UID}"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center"
+                                            LineBreakMode="TailTruncation"
+                                            Padding="5" />
+                                    </Border>
+                                    <Border
+                                        Grid.Column="3"
+                                        Stroke="#CCCCCC"
+                                        StrokeThickness="0.5">
+                                        <Label
+                                            Text="{Binding Password}"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center"
+                                            LineBreakMode="TailTruncation"
+                                            Padding="5" />
+                                    </Border>
+                                    <Border
+                                        Grid.Column="4"
+                                        Stroke="#CCCCCC"
+                                        StrokeThickness="0.5">
+                                        <Label
+                                            Text="{Binding Email}"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center"
+                                            LineBreakMode="TailTruncation"
+                                            Padding="5" />
+                                    </Border>
+                                    <Border
+                                        Grid.Column="5"
+                                        Stroke="#CCCCCC"
+                                        StrokeThickness="0.5">
+                                        <Label
+                                            Text="{Binding Name}"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center"
+                                            LineBreakMode="TailTruncation"
+                                            Padding="5" />
+                                    </Border>
+                                    <Border
+                                        Grid.Column="6"
+                                        Stroke="#CCCCCC"
+                                        StrokeThickness="0.5">
+                                        <Label
+                                            Text="{Binding Proxy}"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center"
+                                            LineBreakMode="TailTruncation"
+                                            Padding="5" />
+                                    </Border>
+                                    <Border
+                                        Grid.Column="7"
+                                        Stroke="#CCCCCC"
+                                        StrokeThickness="0.5">
+                                        <Label
+                                            Text="{Binding Folder}"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center"
+                                            LineBreakMode="TailTruncation"
+                                            Padding="5" />
+                                    </Border>
+                                    <Border
+                                        Grid.Column="8"
+                                        Stroke="#CCCCCC"
+                                        StrokeThickness="0.5">
+                                        <Label
+                                            Text="{Binding LastInteraction}"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center"
+                                            LineBreakMode="TailTruncation"
+                                            Padding="5" />
+                                    </Border>
+                                    <Border
+                                        Grid.Column="9"
+                                        Stroke="#CCCCCC"
+                                        StrokeThickness="0.5">
+                                        <Label
+                                            Text="{Binding Status}"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center"
+                                            Padding="5"/>
+                                    </Border>
+                                    <Border
+                                        Grid.Column="10"
+                                        Stroke="#CCCCCC"
+                                        StrokeThickness="0.5">
+                                        <Label
+                                            Text="{Binding OperationStatus}"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center"
+                                            LineBreakMode="TailTruncation"
+                                            Padding="5" />
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+        </Grid>
+            <!-- Footer Section -->
+        <Border
+            Grid.Row="3"
+            Stroke="LightGray"
+            StrokeThickness="0.5"
+            Padding="10"
+            BackgroundColor="White">
+            <HorizontalStackLayout
+                Spacing="10"
+                VerticalOptions="Center">
+                <Label
+                    Text="Mã thiết bị:"
+                    FontAttributes="Bold" />
+                <Label
+                    Text="MinMo6588****"
+                    TextColor="Teal" />
+
+                <Label
+                    Text="User:"
+                    FontAttributes="Bold" />
+                <Label
+                    Text="Xuân Tùng" />
+
+                <Label
+                    Text="Đăng Xuất"
+                    TextColor="Blue"
+                    TextDecorations="Underline" />
+
+                <Label
+                    Text="Ngày hết hạn:"
+                    FontAttributes="Bold" />
+                <Label
+                    Text="15/02/2026" />
+
+                <Label
+                    Text="Bồi đen:"
+                    FontAttributes="Bold" />
+                <Label
+                    Text="1"
+                    TextColor="Blue" />
+
+                <Label
+                    Text="Đã chọn:"
+                    FontAttributes="Bold" />
+                <Label
+                    Text="{Binding SelectedCount}"
+                    TextColor="Green" />
+
+                <Label
+                    Text="Tất cả:"
+                    FontAttributes="Bold" />
+                <Label
+                    Text="{Binding TotalCount}"
+                    TextColor="Red" />
+
+                <Label
+                    Text="Chrome:"
+                    FontAttributes="Bold" />
+                <Label
+                    Text="0"
+                    TextColor="Green" />
+            </HorizontalStackLayout>
+        </Border>
+    </Grid>
+</ContentPage>
